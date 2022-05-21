@@ -1,0 +1,50 @@
+<main class="main">
+    <div class="navsub-header">
+        <div class="navsub-header__wrapper">
+            <div class="navsub-header__box">
+                <div class="grid wide">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <ul class="navsub-header__list">
+                                <li class="navsub-header__item">
+                                    <a href="" class="navsub-header__link">HOME</a>
+                                </li>
+                                <li class="navsub-header__item">
+                                    <span class="navsub-header__content">ĐĂNG NHẬP TÀI KHOẢN</span>
+                                </li>
+                            </ul>
+                        </div>
+                        {{#if errors}}
+                        <div class="col-sm-6">
+                            <div class="alert alert-danger" role="alert" id="error">{{errors}}</div>
+                        </div>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container register__wrap">
+        <div class="row">
+            <div class="col-lg-12 col-sm-8 col-md-9">
+                <h2 class="register__heading">ĐĂNG NHẬP TÀI KHOẢN</h2>
+                <form id="login-form" action="/login" method="post" role="form" class="register__form">
+                    <div class="form-group register__input register__name">
+                        <input required type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Tên đăng nhập" value="">
+                    </div>
+                    <div class="form-group register__input">
+                        <input required type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Mật khẩu" value="">
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-5 col-sm-offset-3 register__btn">
+                                <button type="submit" name="register-submit" id="register-submit" class="btn-register">ĐĂNG NHẬP</button>
+                                <a href="/register" style="cursor:pointer; text-decoration: none" name="register-submit" id="loginSubmit" class="btn-register">ĐĂNG KÝ NGAY</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>

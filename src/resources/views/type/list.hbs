@@ -1,0 +1,136 @@
+<div class="main">
+    <div class="row">
+        <div class="c-12 col-md-12 col-sm-12">
+            <h3 class="title-table">THÔNG TIN {{title}}</h3>
+            <div class="table-data__tool row">
+                <div class="table-data__tool--left row c-7 col-md-7 col-sm-7">
+                    <div class="input__wrapper c-7 col-md-7 col-sm-7">
+                        <input type="text" name="searchData" class="input__search form-control" placeholder="Nhập thông tin tìm kiếm...">
+                        <i class="input__search--icon fas fa-search"></i>
+                    </div>
+                    <div class="select__wrapper c-5 col-md-5 col-sm-5">
+                        <select name="time" id="" class="select__input form-control">
+                            <option value="" select="selected">Today</option>
+                            <option value="">3 Days</option>
+                            <option value="">1 Week</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-data__tool--right row c-5 col-md-5 col-sm-5">
+                    <button class="btn btn-primary btn__add">THÊM {{title}}</button>
+                </div>
+            </div>
+            <div class="table-data__wrapper">
+                <table class="table-data__content table-layout" border="2" cellspacing="1">
+                    <thead>
+                        <tr>
+                            <th>{{title}}</th>
+                            <th>Đường Dẫn</th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each type}}
+                        <tr id="{{this.id}}">
+                            <td class="shrink">
+                                <span>{{this.name}}</span>
+                            </td>
+                            <td class="shrink">
+                                <span>{{this.link}}</span>
+                            </td>
+                            <td class="shrink" style="padding: 10px">
+                                <a href="/admin/type/edit/{{this.id}}" class="table-data__edit">
+                                    <i class="table-data__icon fas fa-edit"></i>
+                                </a>
+                                <a href="/admin/type/list/delete/{{this.id}}" class="table-data__delete">
+                                    <i class="table-data__icon fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Modal Add-->
+<div class="modal js-modal">
+    <div class="modal-container js-modal-container">
+        <div class="modal-close js-modal-close">
+            <i class="ti-close"></i>
+        </div>
+        <header class="modal-header">
+            <i class="ti-bag modal-header-icon">
+                THÊM MỚI {{title}}
+            </i>
+        </header>
+        <div class="modal-body">
+            <form action="/admin/type/list" method="POST">
+                <label for="name" class="modal-label">
+                    <i class="fas fa-list"></i>
+                    Tên {{title}}
+                </label>
+                <input type="text" id="name" class="modal-input" name="name" value="" placeholder="Nhập {{title}}">
+                
+                <label for="link" class="modal-label">
+                    <i class="fas fa-link"></i>
+                    Đường dẫn
+                </label>
+                <input type="text" id="link" class="modal-input" name="link" value="" placeholder="Nhập đường dẫn">
+
+                <button class="modal__btn" type="submit">
+                    Thêm mới
+                </button>
+            </form>
+        </div>
+        <footer class="modal-footer">
+            <p class="modal-help">
+                Need 
+                <a href="">help?</a>
+            </p>
+        </footer>
+    </div>
+</div>
+
+<!--Modal Edit-->
+{{!-- <div class="modal js-modal-edit">
+    <div class="modal-container js-modal-container-edit">
+        <div class="modal-close js-modal-close-edit">
+            <i class="ti-close"></i>
+        </div>
+        <header class="modal-header">
+            <i class="ti-bag modal-header-icon">
+                CẬP NHẬT {{title}}
+            </i>
+        </header>
+        <div class="modal-body">
+            <form action="/admin/category" method="POST">
+
+                <input type="hidden" id="id" class="modal-input modal-edit" name="id" value="" style="background-color:rgb(226, 218, 218); font-weight:bold">
+
+                <label class="modal-label" for="name">
+                    <i class="fas fa-list"></i>
+                    Tên {{title}}
+                </label>
+                <input type="text" id="name" class="modal-input modal-edit" name="name" value="">
+                
+                <label class="modal-label" for="link">
+                    <i class="fas fa-link"></i>
+                    Đường dẫn
+                </label>
+                <input type="text" id="link" class="modal-input modal-edit" name="link" value="">
+
+                <button class="modal__btn" type="submit">
+                    LƯU LẠI
+                </button>
+            </form>
+        </div>
+        <footer class="modal-footer">
+            <p class="modal-help">
+                Need 
+                <a href="">help?</a>
+            </p>
+        </footer>
+    </div>
+</div> --}}

@@ -1,0 +1,240 @@
+<div class="main">
+    <div class="row">
+        <div class="c-12 col-md-12 col-sm-12">
+            <h3 class="title-table">THÔNG TIN {{title}}</h3>
+            <div class="table-data__tool row">
+                <div class="table-data__tool--left row c-7 col-md-7 col-sm-7">
+                    <div class="input__wrapper c-7 col-md-7 col-sm-7">
+                        <input type="text" name="searchData" class="input__search form-control" placeholder="Nhập thông tin tìm kiếm...">
+                        <i class="input__search--icon fas fa-search"></i>
+                    </div>
+                    <div class="select__wrapper c-5 col-md-5 col-sm-5">
+                        <select name="time" id="" class="select__input form-control">
+                            <option value="" select="selected">Today</option>
+                            <option value="">3 Days</option>
+                            <option value="">1 Week</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="table-data__tool--right row c-5 col-md-5 col-sm-5">
+                    <button class="btn btn-primary btn__add">THÊM {{title}}</button>
+                </div>
+            </div>
+            <div class="table-data__wrapper">
+                <table class="table-data__content table-layout" border="2" cellspacing="1">
+                    <thead>
+                        <tr>
+                            <th>Hình Ảnh</th>
+                            <th>Tên Sản Phẩm</th>
+                            <th>Giá</th>
+                            <th>Mô Tả Ngắn Gọn</th>
+                            <th>Tình Trạng</th>
+                            <th>View</th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each products}}
+                        <tr id="{{this.id}}">
+                             <td class="shrink table-image">
+                                <img title="{{this.name}}" src="/image/Product/{{this.image}}" class="table-data__image"></img>
+                            </td>
+                            <td class="shrink">
+                                <span>{{this.name}}</span>
+                            </td>
+                            <td class="shrink">
+                                <span>{{this.price}}</span>
+                            </td>
+                            <td class="shrink table-descritpion">
+                                <span>
+                                    {{this.shortdescription}}
+                                </span>
+                            </td>
+                            {{#if this.status}}
+                            <td class="shrink">
+                                <span id="statusProduct" style="cursor:pointer; color: #00FF00">Hết Hàng</span>
+                            </td>
+                            {{else}}
+                            <td class="shrink">
+                                <span id="statusProduct" style="cursor:pointer; color: #00FF00">Còn Hàng</span>
+                            </td>
+                            {{/if}}
+                            <td class="shrink" id="detailProduct" style="cursor:pointer; color: purple">Chi Tiết</td>
+                            <td class="shrink" style="padding: 26px">
+                                <a href="/admin/product/edit/{{this.id}}" class="table-data__edit">
+                                    <i class="table-data__icon fas fa-edit"></i>
+                                </a>
+                                <a href="/admin/product/list/delete/{{this.id}}" class="table-data__delete">
+                                    <i class="table-data__icon fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-12 page">
+            <nav> 
+                <ul class="pagination home-product__pagination">
+                    <li class="pagination-item pagination-item--active">
+                        <a href="" class="pagination-item__link">1</a>
+                    </li>
+                    <li class="pagination-item">
+                        <a href="" class="pagination-item__link">2</a>
+                    </li>
+                    <li class="pagination-item">
+                        <a href="" class="pagination-item__link">3</a>
+                    </li>
+                    <li class="pagination-item">
+                        <a href="" class="pagination-item__link">...</a>
+                    </li>
+                    <li class="pagination-item">
+                        <a href="" class="pagination-item__link">10</a>
+                    </li>
+                    <li class="pagination-item">
+                        <a href="" class="pagination-item__link">
+                            <i class="pagination-item__icon fas fa-chevron-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<!--Modal Add-->
+<div class="modal js-modal">
+    <div class="modal-containe--tall js-modal-container">
+        <div class="modal-close js-modal-close">
+            <i class="ti-close"></i>
+        </div>
+        <header class="modal-header">
+            <i class="ti-bag modal-header-icon">
+                THÊM MỚI {{title}}
+            </i>
+        </header>
+        <div class="modal-body">
+            <form action="/admin/product/list" method="POST" enctype="multipart/form-data">
+                <div class="modal-wrap">
+                    <div class="modal-box">
+                        <label for="name" class="modal-label--tall">
+                            <i class="fas fa-box"></i>
+                            Tên {{title}}
+                        </label>
+                        <input type="text" id="name" class="modal-input--tall" name="name" value="" placeholder="Nhập {{title}}">
+                    </div>
+
+                    <div class="modal-box">
+                        <label for="name" class="modal-label--tall">
+                            <i class="fas fa-image"></i>
+                            Hình ảnh đại diện
+                        </label>
+                        <input type="file" name="image" id="image">
+                    </div>
+                </div>
+                
+                <div class="modal-wrap">
+                    <div class="modal-box">
+                        <label for="link" class="modal-label--tall">
+                            <i class="fas fa-link"></i>
+                            Đường dẫn
+                        </label>
+                        <input type="text" id="link" class="modal-input--tall" name="link" value="" placeholder="Nhập đường dẫn">
+                    </div>
+                    <div class="modal-box">
+                        <label for="link" class="modal-label--tall">
+                            <i class="fas fa-comment-alt"></i>
+                            Mô tả ngắn
+                        </label>
+                        <input type="text" id="shortdescription" class="modal-input--tall" name="shortdescription" value="" placeholder="Nhập mô tả ngắn">
+                    </div>
+                </div>
+                
+                <div class="modal-wrap">
+                    <div class="modal-box">
+                        <label for="link" class="modal-label--tall">
+                            <i class="fas fa-money-bill"></i>
+                            Giá
+                        </label>
+                        <input type="text" id="price" class="modal-input--tall" name="price" value="" placeholder="Nhập giá">
+                    </div>
+                    <div class="modal-box">
+                        <label for="link" class="modal-label--tall">
+                            <i class="fas fa-list"></i>
+                            Danh mục
+                        </label>
+                        <select id="category_id" name="category_id" class="modal-input--tall">
+                            <option value="" selected="selected">Chọn danh mục cho sản phẩm</option>
+                            {{#each category}}
+                            {{#if this.bttproduct}}
+                            {{else}}
+                            <option value="{{this.id}}">{{this.name}}</option>
+                            {{/if}}
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+
+                <label for="link" class="modal-label--tall">
+                    <i class="fas fa-comment-alt"></i>
+                    Mô tả chi tiết
+                </label>
+                <textarea type="text" id="ckeditor" class="modal-input" name="detaildescription" value="" placeholder="Nhập mô tả chi tiết"></textarea>
+
+                <button class="modal__btn" type="submit">
+                    Thêm mới
+                </button>
+            </form>
+        </div>
+        <footer class="modal-footer">
+            <p class="modal-help">
+                Need 
+                <a href="">help?</a>
+            </p>
+        </footer>
+    </div>
+</div>
+{{!-- <script type="text/javascript">
+    CKEDITOR.replace('ckeditor', {height : 100});
+</script> --}}
+<!--Modal Edit-->
+{{!-- <div class="modal js-modal-edit">
+    <div class="modal-container js-modal-container-edit">
+        <div class="modal-close js-modal-close-edit">
+            <i class="ti-close"></i>
+        </div>
+        <header class="modal-header">
+            <i class="ti-bag modal-header-icon">
+                CẬP NHẬT {{title}}
+            </i>
+        </header>
+        <div class="modal-body">
+            <form action="/admin/category" method="POST">
+
+                <input type="hidden" id="id" class="modal-input modal-edit" name="id" value="" style="background-color:rgb(226, 218, 218); font-weight:bold">
+
+                <label class="modal-label" for="name">
+                    <i class="fas fa-list"></i>
+                    Tên {{title}}
+                </label>
+                <input type="text" id="name" class="modal-input modal-edit" name="name" value="">
+                
+                <label class="modal-label" for="link">
+                    <i class="fas fa-link"></i>
+                    Đường dẫn
+                </label>
+                <input type="text" id="link" class="modal-input modal-edit" name="link" value="">
+
+                <button class="modal__btn" type="submit">
+                    LƯU LẠI
+                </button>
+            </form>
+        </div>
+        <footer class="modal-footer">
+            <p class="modal-help">
+                Need 
+                <a href="">help?</a>
+            </p>
+        </footer>
+    </div>
+</div> --}}

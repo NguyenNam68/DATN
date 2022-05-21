@@ -1,0 +1,152 @@
+<footer class="footer">
+    <div class="footer__wrapper">
+        <div class="grid wide">
+            <div class="row">
+                <div class="col-md-2 col-sm-2 col-lg-offset-1 col-md-offset-1 col-sm-offset-1">
+                    <div class="footer__box">
+                        <div class="footer__content">
+                            <div class="footer__title">
+                                <h4 class="footer__heading">SẢN PHẨM</h4>
+                            </div>
+                            <div class="footer__cusmenu">
+                                <ul class="footer__text-list">
+                                    <li class="footer__text-item">
+                                        <a href="" class="footer__text-link">Tarot</a>
+                                    </li>
+                                    <li class="footer__text-item">
+                                        <a href="" class="footer__text-link">Oracle</a>
+                                    </li>
+                                    <li class="footer__text-item">
+                                        <a href="" class="footer__text-link">Lenormand</a>
+                                    </li>
+                                    <li class="footer__text-item">
+                                        <a href="" class="footer__text-link">Phụ kiện</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="footer__box">
+                        <div class="footer__content">
+                            <div class="footer__title">
+                                <h4 class="footer__heading">APUS TAROT</h4>
+                            </div>
+                            <div class="footer__cusmenu">
+                                <ul class="footer__text-list">
+                                    <li class="footer__text-item">
+                                        <a href="" class="footer__text-link">Trang chủ</a>
+                                    </li>
+                                    <li class="footer__text-item">
+                                        <a href="" class="footer__text-link">Giới thiệu</a>
+                                    </li>
+                                    <li class="footer__text-item">
+                                        <a href="" class="footer__text-link">Shop</a>
+                                    </li>
+                                    <li class="footer__text-item">
+                                        <a href="" class="footer__text-link">Vận chuyển</a>
+                                    </li>
+                                    <li class="footer__text-item">
+                                        <a href="" class="footer__text-link">Quy định đổi trả</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-2">
+                    <div class="footer__box">
+                        <div class="footer__content">
+                            <div class="footer__title">
+                                <h4 class="footer__heading">FOLLOW US</h4>
+                            </div>
+                            <div class="footer__cusmenu">
+                                <ul class="footer__text-list">
+                                    <li class="footer__social-item">
+                                        <a href="" class="footer__text-link">
+                                            <span class="footer__social-icon"><i class="fab fa-facebook-f"></i></span> 
+                                            <span class="footer__social-text">Facebook</span>
+                                        </a>
+                                    </li>
+                                    <li class="footer__social-item">
+                                        <a href="" class="footer__text-link">
+                                            <span class="footer__social-icon"><i class="fab fa-instagram"></i></span> 
+                                            <span class="footer__social-text">Instagram</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="footer__box">
+                        <div class="footer__content">
+                            <div class="footer__title">
+                                <h4 class="footer__heading">ĐỊA CHỈ</h4>
+                            </div>
+                            <div class="footer__address">
+                                <p>SỐ 32 NGÁCH 31 NGÕ 14 PHÁO ĐÀI LÁNG, LÁNG THƯỢNG, ĐÔNG ĐA, HÀ NỘI</p>
+                                <p>0975 794 900</p>
+                                <p>Email: info@apustarot.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="footer__license-wrapper">
+                        <div class="footer__license-box">
+                            <div class="footer__license-clear">
+                            </div>
+                            <div class="footer__license-title">
+                                <div class="footer__license-heading">
+                                    © 2016 APUSTAROT.COM |  All rights reserved.
+                                </div>
+                            </div>
+                            <div class="footer__client-wrapper">
+                                <ul class="footer__client-list">
+                                    <li class="footer__client-item">
+                                        <a href="" class="footer__client-link">
+                                            <span>HOMEPAGE</span>
+                                        </a>
+                                    </li>
+                                    <li class="footer__client-item">
+                                        <a href="" class="footer__client-link">
+                                            <span>My Account</span>
+                                        </a>
+                                    </li>
+                                    <li class="footer__client-item">
+                                        <a href="" class="footer__client-link">
+                                            <span>Shop</span>
+                                        </a>
+                                    </li>
+                                    <li class="footer__client-item">
+                                        <a href="" class="footer__client-link">
+                                            <span>Contact page</span>
+                                        </a>
+                                    </li>
+                                    <li class="footer__client-item">
+                                        <a href="" class="footer__client-link">
+                                            <span>Blog</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<script>
+    var haschild = document.getElementById('haschild');
+    haschild.innerHTML =    `{{#each typeproduct}}
+                                <li class="header-menu-child__item">
+                                    <a href="{{this.link}}" class="header-menu-child__link">
+                                        <span>{{this.name}}</span>
+                                    </a>
+                                </li>
+                            {{/each}}`
+</script>
