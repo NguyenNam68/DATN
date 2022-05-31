@@ -3,11 +3,18 @@ const queries = require('../database/queries/crud');
 
 class SliderController{
     slider(req, res){
+        var perPage = 4;
+        var page = (req.query.page) || 1;
+        var start = (page - 1)*perPage;
+        var end = page*perPage;
+        var slider, size;
         connection.query(queries.listslider, (err, results) => {
             if(err){
                 console.log(err);
             }else{
-                res.render('slider/list', {slider : results, title: "Slider", layout : "admain"});
+                slider = results.slice(start, end);
+                size = Math.ceil(results.length/perPage);
+                res.render('slider/list', {slider : results, size : size, currentPage : page, title: "Slider", layout : "admain"});
             }
         });
     }
@@ -43,10 +50,14 @@ class SliderController{
         if(req.body.text === "undefined"){
             req.body.text = NULL;
         };
+        if(req.body.detail === "undefined"){
+            req.body.detail = NULL;
+        }
         const data = {
             image : req.file.filename,
             slider_id : req.params.id,
-            text : req.body.text
+            text : req.body.text,
+            detail : req.body.detail
         };
         connection.query(queries.addImageSlider(data), (err, results)=>{
             if(err){

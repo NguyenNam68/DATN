@@ -12,13 +12,22 @@
         <label for="link" class="input-group-text" id="basic-addon2">Đường Dẫn</label>
         <input disabled type="text" id="link" name="link" value="{{this.link}}" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2">
     </div>
-    <div class="card-body">
-        <form action="/admin/slider/image/{{this.id}}" method="POST" enctype="multipart/form-data">
-            <input type="file" name="imageSlide" id="imageSlide" class="inputfile">
-            <label for="imageSlide" class="btn btn-primary label-image">Chọn ảnh slider</label>
+    <div class="input-group mb-3">
+        <form action="/admin/slider/image/{{this.id}}" method="POST" enctype="multipart/form-data" style="width:100%">
+            <div class="input-group mb-3">
+                <input onchange="previewUpload(event)" type="file" name="imageSlide" id="imageSlide" class="inputfile">
+                <label for="imageSlide" class="btn btn-primary label-image" id="labelImage">Chọn ảnh slider</label>
+                <img id="imagePreview" alt="">
+            </div>
+
             <div class="input-group mb-3" style="margin-top: 15px;">
-                <label for="link" class="input-group-text" id="basic-addon2">Nội dung ảnh</label>
+                <label for="text" class="input-group-text" id="basic-addon2">Nội dung ảnh</label>
                 <input type="text" id="text" name="text" value="" class="form-control" placeholder="Nhập nội dung ảnh" aria-label="" aria-describedby="basic-addon2">
+            </div>
+            
+            <div class="input-group mb-3" style="margin-top: 15px;">
+                <label for="detail" class="input-group-text" id="basic-addon2">Nội dung chi tiết</label>
+                <input type="text" id="detail" name="detail" value="" class="form-control" placeholder="Nhập nội dung chi tiết" aria-label="" aria-describedby="basic-addon2">
             </div>
             <div class="input-group">
             <button type="submit" class="modal__btn">Thêm Ảnh</button>

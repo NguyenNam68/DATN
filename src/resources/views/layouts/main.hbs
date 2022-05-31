@@ -53,18 +53,6 @@
                 $this.attr('value', d).val(d)
             })
         })
-
-        var pagination = document.getElementById('pagination');
-        var myPaging; 
-        for(var i = 1; i<{{size}}; i++){
-            myPaging += "<li class='pagination-item'>"+
-                        "a href='/product-category?page="+i+"' class='pagination-item__link'>"+i+"</a>"+
-                        "</li>"
-        }
-        if(typeof myPaging === "undefined"){
-            myPaging = "";
-        }
-        pagination.innerHTML = myPaging;
     </script>
     <script src="/javascript/slick.js"></script>
     <script src="/javascript/slider.js"></script>

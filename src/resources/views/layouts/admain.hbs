@@ -34,45 +34,23 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/javascript/admin.js"></script>
     <script>
-        /*var input = document.querySelector('.inputfile');
-        var label = input.nextElementSibling;
-        var labelVal = label.innerHTML;
-        var labelImg = document.querySelector('.label-image');
-        labelImg.innerHTML = `{{#each products}}
-                            {{this.image}}
-                            {{/each}}`;
-        var imgEdit = document.getElementById('img-edit');
-        imgEdit.src = `/image/Product/${labelImg.innerText}`;
-        input.addEventListener('change', function(e) {
-            if(e.target.files.length>0){
-                var fileName = e.target.files[0].name;
-                var formProductEdit = document.getElementById('form__edit-product');
-                formProductEdit.enctype ="multipart/form-data";
-                if(fileName){
-                    labelImg.innerHTML = fileName;
-                    imgEdit.src = `/image/Product/${labelImg.innerText}`;
-                }
-            }else{
-                labelImg.innerHTML = labelVal;
-            }
-        })*/
-
         var pagination = document.getElementById('pagination');
+        var url = location.pathname;
         var myPage="";
         if({{size}}>1){
             var previous = {{currentPage}} - 1;
             var next = {{currentPage}} + 1;
             if({{currentPage}}!==1){
                 myPage = "<li class='pagination-item'>"+
-                        "<a href='/admin/product/list?page="+previous+"' class='pagination-item__link'><i class='fas fa-arrow-left'></i></a></li>"
+                        "<a href='"+url+"?page="+previous+"' class='pagination-item__link'><i class='fas fa-arrow-left'></i></a></li>"
             }
             for(var i = 1; i <= {{size}}; i++){
                 if(i == {{currentPage}}){
                     myPage += "<li class='pagination-item pagination-item--active'>"+
-                                "<a href='/admin/product/list?page="+i+"' class='pagination-item__link pagination-item__link--active'>"+i+"</a></li>"
+                                "<a href='"+url+"?page="+i+"' class='pagination-item__link pagination-item__link--active'>"+i+"</a></li>"
                 }else{
                     myPage += "<li class='pagination-item'>"+
-                                "<a href='/admin/product/list?page="+i+"' class='pagination-item__link'>"+i+"</a></li>"
+                                "<a href='"+url+"?page="+i+"' class='pagination-item__link'>"+i+"</a></li>"
                 }
             }
             if({{currentPage}}!=={{size}}){
@@ -81,7 +59,6 @@
             }
         };
         pagination.innerHTML = myPage;
-        
     </script>
 </body>
 </html>

@@ -26,28 +26,28 @@ for(var i=0; i < imgSubs.length; i++){
 }
 
 //Has More Tab Detail
-function HasDescription(){
-    var detailList=document.getElementById('detailList');
-    var contentDescription=document.getElementById('descriptionContent');
-    var selectlReview=document.getElementById('reviewSelect');
-    var contentReview=document.getElementById('reviewContent');
-    var detailDescription=document.getElementById('descriptionDetail');
-    var detailReview=document.getElementById('reviewDetail');
-    function DescriptionContent(){
-        contentDescription.style.display='block';
-        contentReview.style.display='none';
-    }
-    function ReviewContent(){
-        contentDescription.style.display='none';
-        contentReview.style.display='block';
-    }
-    if(detailList.classList.contains('has--description')){
-        contentDescription.style.display='block';
-        detailDescription.addEventListener('click', DescriptionContent);
-        detailReview.addEventListener('click', ReviewContent);
-    }else{
-        selectlReview.checked=true;
-        contentReview.style.display='block';
-    }
-}
-HasDescription();
+// function HasDescription(){
+//     var detailList=document.getElementById('detailList');
+//     var contentDescription=document.getElementById('descriptionContent');
+//     var selectlReview=document.getElementById('reviewSelect');
+//     var contentReview=document.getElementById('reviewContent');
+//     var detailDescription=document.getElementById('descriptionDetail');
+//     var detailReview=document.getElementById('reviewDetail');
+//     function DescriptionContent(){
+//         contentDescription.style.display='block';
+//         contentReview.style.display='none';
+//     }
+//     function ReviewContent(){
+//         contentDescription.style.display='none';
+//         contentReview.style.display='block';
+//     }
+//     if(detailList.classList.contains('has--description')){
+//         contentDescription.style.display='block';
+//         detailDescription.addEventListener('click', DescriptionContent);
+//         detailReview.addEventListener('click', ReviewContent);
+//     }else{
+//         selectlReview.checked=true;
+//         contentReview.style.display='block';
+//     }
+// }
+// HasDescription();

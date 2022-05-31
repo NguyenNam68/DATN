@@ -33,3 +33,13 @@ modalAddClose.onclick = () =>{
 // modalEditClose.onclick = () =>{
 //     modalEdit.style.display = 'none';
 // }
+
+function previewUpload(e){
+    var preview = document.getElementById('imagePreview');
+    preview.src = URL.createObjectURL(e.target.files[0]);
+    var textImage = document.getElementById('labelImage');
+    textImage.innerText = e.target.files[0].name;
+    preview.onload = () => {
+        URL.revokeObjectURL(preview.src);
+    }
+}

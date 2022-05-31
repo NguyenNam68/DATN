@@ -28,7 +28,7 @@ const crud = {
         return `INSERT INTO SLIDER (id, content, status, link) VALUES (NULL, '${data.content}', NULL, '${data.link}');`
     },
     addImageSlider : (data) => {
-        return `INSERT INTO IMAGESLIDER (id, image, slider_id, text) VALUES (NULL, '${data.image}', '${data.slider_id}', '${data.text}');`
+        return `INSERT INTO IMAGESLIDER (id, image, slider_id, text, detail) VALUES (NULL, '${data.image}', '${data.slider_id}', '${data.text}', '${data.detail}');`
     },
 
     getCategoryByID : (id) =>{
@@ -58,6 +58,7 @@ const crud = {
     getSliderByID : (id) =>{
         return `SELECT * FROM SLIDER WHERE SLIDER.id = '${id}';`
     },
+    getSliderByStatus : `SELECT * FROM SLIDER WHERE SLIDER.STATUS = 1;`,
     getImageSliderByID : (id) =>{
         return `SELECT * FROM IMAGESLIDER WHERE IMAGESLIDER.slider_id = '${id}';`
     },

@@ -53,7 +53,7 @@ class ProductController{
     add(req, res){
         var now = new Date();
         var year = now.getFullYear();
-        var month = now.getMonth();
+        var month = now.getMonth() + 1;
         var date = now.getDate();
         var time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
         var datecreate = `${year}-${month}-${date} ${time}`;

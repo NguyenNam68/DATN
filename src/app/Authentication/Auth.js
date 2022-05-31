@@ -7,7 +7,6 @@ module.exports.requireAuth = function (req, res, next) {
         return;
     }else{
         var id = req.signedCookies.userID;
-        console.log(id);
         connection.query(queries.getUserByID(id), (err, result) => {
             if(err){
                 console.log(err);

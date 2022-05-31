@@ -1,5 +1,17 @@
 <div class="c-12 header-slider">
     <div id="mySlider">
+        {{#each slider}}
+            <div id="slide{{this.id}}" class='singleSlide sliders' style='background-image:url("/image/Slide/{{this.image}}");'>
+                <div class="slideOverlay">
+                    {{#if this.text}}
+                    <h1 class="slide__title">{{this.text}}</h1>
+                    {{/if}}
+                    {{#if this.detail}}
+                    <h4 class="slide__detail">{{this.detail}}</h4>
+                    {{/if}}
+                </div>
+            </div>
+        {{/each}}
     </div>
     <div id="sliderNav">
         <div id="sliderPrev" onclick="prevSlide();" class="slideButton">

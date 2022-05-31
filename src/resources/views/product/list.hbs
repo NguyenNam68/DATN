@@ -102,7 +102,7 @@
                             <i class="fas fa-box"></i>
                             Tên {{title}}
                         </label>
-                        <input type="text" id="name" class="modal-input--tall" name="name" value="" placeholder="Nhập {{title}}">
+                        <input required type="text" id="name" class="modal-input--tall" name="name" value="" placeholder="Nhập {{title}}">
                     </div>
 
                     <div class="modal-box">
@@ -110,7 +110,7 @@
                             <i class="fas fa-image"></i>
                             Hình ảnh đại diện
                         </label>
-                        <input type="file" name="image" id="image" class="inputfile">
+                        <input required type="file" name="image" id="image" class="inputfile">
                         <label for="image" class="btn btn-primary label-image">Chọn ảnh sản phẩm</label>
                     </div>
                 </div>
@@ -121,14 +121,14 @@
                             <i class="fas fa-link"></i>
                             Đường dẫn
                         </label>
-                        <input type="text" id="link" class="modal-input--tall" name="link" value="" placeholder="Nhập đường dẫn">
+                        <input required type="text" id="link" class="modal-input--tall" name="link" value="" placeholder="Nhập đường dẫn">
                     </div>
                     <div class="modal-box">
                         <label for="link" class="modal-label--tall">
                             <i class="fas fa-comment-alt"></i>
                             Mô tả ngắn
                         </label>
-                        <input type="text" id="shortdescription" class="modal-input--tall" name="shortdescription" value="" placeholder="Nhập mô tả ngắn">
+                        <input required type="text" id="shortdescription" class="modal-input--tall" name="shortdescription" value="" placeholder="Nhập mô tả ngắn">
                     </div>
                 </div>
                 
@@ -138,14 +138,14 @@
                             <i class="fas fa-money-bill"></i>
                             Giá
                         </label>
-                        <input type="text" id="price" class="modal-input--tall" name="price" value="" placeholder="Nhập giá">
+                        <input required type="text" id="price" class="modal-input--tall" name="price" value="" placeholder="Nhập giá">
                     </div>
                     <div class="modal-box">
                         <label for="link" class="modal-label--tall">
                             <i class="fas fa-list"></i>
                             Danh mục
                         </label>
-                        <select id="category_id" name="category_id" class="modal-input--tall">
+                        <select required id="category_id" name="category_id" class="modal-input--tall">
                             <option value="" selected="selected">Chọn danh mục cho sản phẩm</option>
                             {{#each category}}
                             {{#if this.bttproduct}}
@@ -161,7 +161,7 @@
                     <i class="fas fa-comment-alt"></i>
                     Mô tả chi tiết
                 </label>
-                <textarea type="text" id="ckeditor" class="modal-input" name="detaildescription" value="" placeholder="Nhập mô tả chi tiết"></textarea>
+                <textarea required type="text" id="ckeditor" class="modal-input" name="detaildescription" value="" placeholder="Nhập mô tả chi tiết"></textarea>
 
                 <button class="modal__btn" type="submit">
                     Thêm mới

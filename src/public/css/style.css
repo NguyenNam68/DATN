@@ -1491,7 +1491,6 @@
 /*PRODUCT*/
 .product__wrapper {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
   float: left;
   margin: 5px -15px 0;
