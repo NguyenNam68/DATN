@@ -1,0 +1,117 @@
+<div class="card">
+    <div class="card-header">
+        CẬP NHẬT THÔNG TIN {{title}}
+    </div>
+    <div class="card-body">
+        {{#each products}}
+        <div class="input-group mb-3">
+            <label class="input-group-text" id="basic-addon2">Hình ảnh</label>
+            <img id="img-edit" src="/image/Product/{{this.image}}" alt="" width="15%" style="margin-left: 10px;">
+        </div>
+        <form action="/admin/product/edit/{{this.id}}" method="POST" id="form__edit-product">
+            <div class="input-group mb-3">
+                <label for="name" class="input-group-text" id="basic-addon1">Tên sản phẩm</label>
+                <input type="text" id="name" name="name" value="{{this.name}}" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group mb-3">
+                <label for="link" class="input-group-text" id="basic-addon2">Đường dẫn</label>
+                <input type="text" id="link" name="link" value="{{this.link}}" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2">
+            </div>
+
+            <div class="input-group mb-3">
+                <label for="price" class="input-group-text" id="basic-addon2">Giá mặc định</label>
+                <input type="text" id="price" name="price" value="{{this.price}}" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2">
+            </div>
+
+            <div class="input-group mb-3">
+                <label for="discount" class="input-group-text" id="basic-addon2">Giảm giá</label>
+                <input type="radio" name="discount" value="10" class="input__discount" placeholder="" aria-label="" aria-describedby="basic-addon2">
+                <span class="span__discount">10%</span>
+                <input type="radio" name="discount" value="20" class="input__discount" placeholder="" aria-label="" aria-describedby="basic-addon2">
+                <span class="span__discount">20%</span>
+                <input type="radio" name="discount" value="30" class="input__discount" placeholder="" aria-label="" aria-describedby="basic-addon2">
+                <span class="span__discount">30%</span>
+                <input type="radio" name="discount" value="40" class="input__discount" placeholder="" aria-label="" aria-describedby="basic-addon2">
+                <span class="span__discount">40%</span>
+                <input type="radio" name="discount" value="50" class="input__discount" placeholder="" aria-label="" aria-describedby="basic-addon2">
+                <span class="span__discount">50%</span>
+            </div>
+
+            <div class="input-group mb-3 input__checkbox">
+                {{#if this.new}}
+                <div class="input-group mb-3 input__check">
+                    <label for="new" class="input-group-text" id="basic-addon2">New</label>
+                    <input type="checkbox" checked id="new" name="new" value="1" class="edit__checkbox" placeholder="" aria-label="" aria-describedby="basic-addon2">
+                </div>
+                {{else}}
+                <div class="input-group mb-3 input__check">
+                    <label for="new" class="input-group-text" id="basic-addon2">New</label>
+                    <input type="checkbox" id="new" name="new" value="1" class="edit__checkbox" placeholder="" aria-label="" aria-describedby="basic-addon2">
+                </div>
+                {{/if}}
+
+                {{#if this.capture}}
+                <div class="input-group mb-3 input__check">
+                    <label for="capture" class="input-group-text" id="basic-addon2">Nổi bật</label>
+                    <input type="checkbox" checked id="capture" name="capture" value="1" class="edit__checkbox" placeholder="" aria-label="" aria-describedby="basic-addon2">
+                </div>
+                {{else}}
+                <div class="input-group mb-3 input__check">
+                    <label for="capture" class="input-group-text" id="basic-addon2">Nổi bật</label>
+                    <input type="checkbox" id="capture" name="capture" value="1" class="edit__checkbox" placeholder="" aria-label="" aria-describedby="basic-addon2">
+                </div>
+                {{/if}}
+            </div>
+
+            <select id="category_id" name="category_id" class="modal-input--tall">
+                
+            </select>
+
+            <div class="input-group mb-3">
+                <label for="shortdescription" class="input-group-text" id="basic-addon2">Mô tả ngắn</label>
+                <textarea type="text" id="shortdescription" name="shortdescription" class="form-control input-description" aria-describedby="basic-addon2">{{this.shortdescription}}</textarea>
+            </div>
+
+            <div class="input-group mb-3">
+                <label for="detaildescription" class="input-group-text" id="basic-addon2">Mô tả chi tiết</label>
+                <textarea type="text" id="detaildescription" name="detaildescription" class="form-control input-description" aria-describedby="basic-addon2">{{this.detaildescription}}</textarea>
+            </div>
+
+            <div class="input-group">
+                <button type="submit" class="modal__btn">LƯU LẠI</button>
+            </div>
+        </form>
+        {{/each}}
+        <div class="input-group">
+            <a href="/admin/product/list" class="modal__btn btnBack">
+                QUAY LẠI
+            </a>
+        </div>
+    </div>
+</div>
+<script>
+    var category_id = document.getElementById("category_id");
+        category_id.innerHTML = `
+                                {{#each category}}
+                                {{#if this.bttproduct}}
+                                {{else}}
+                                <option value="{{this.id}}" class="select__category-id">{{this.name}}</option>
+                                {{/if}}
+                                {{/each}}
+                                `;
+
+        var categories = document.querySelectorAll(".select__category-id");
+        for(var i = 0; i < categories.length; i++){
+            if(categories[i].value=={{id}}){
+                categories[i].selected = true;
+            }
+        }
+        
+        var discounts = document.querySelectorAll('.input__discount');
+        for(var i = 0; i < discounts.length; i++){
+            if(discounts[i].value=={{discount}}){
+                discounts[i].checked = true;
+            }
+        }   
+</script>

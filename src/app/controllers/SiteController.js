@@ -5,20 +5,30 @@ const queries = require('../database/queries/crud');
 class SiteController {
     index(req, res){
         var typeproduct;
-        connection.query(queries.listtype, (err, results) => {
+        connection.query(queries.listtype, (err, result) => {
             if(err){
                 console.log(err);
             }else{
-                typeproduct = results;
+                typeproduct = result;
+                connection.query(queries.listcategory, (err, results) => {
+                    if(err){
+                        console.log(err);
+                    }else{
+                        if(req.signedCookies.userID){
+                            connection.query(queries.getUserByID(req.signedCookies.userID), (err, user) => {
+                                if(err){
+                                    console.log(err);
+                                }else{
+                                    res.render('home', {category : results ,typeproduct : typeproduct, username : user[0].name ,title: 'Apus Tarot Shop - Hệ thống quản trị'})
+                                }
+                            })
+                        }else{
+                            res.render('home', {category : results ,typeproduct : typeproduct,title: 'Apus Tarot Shop - Hệ thống quản trị'});
+                        }
+                    }
+                });
             }
-        })
-        connection.query(queries.listcategory, (err, results) => {
-            if(err){
-                console.log(err);
-            }else{
-                res.render('home', {category : results ,typeproduct : typeproduct,title: 'Apus Tarot Shop - Hệ thống quản trị'});
-            }
-        })
+        });
     }
 
     showProductCategory(req, res){
@@ -38,19 +48,26 @@ class SiteController {
                 typeproduct = results;
             }
         });
-        // var categoryName;
-        // connection.query(queries.getCategoryByID(req.params.id), (err, results)=>{
-        //     if(err){
-        //         console.log(err);
-        //     }else{
-        //         categoryName = results[0].name;
-        //     }
-        // });
+        var perPage = 16;
+        var page = (req.query.page) || 1;
+        var start = (page - 1)*perPage;
+        var end = page*perPage;
+        var size;
+        var categoryName;
+        var categoryID = req.params.id;
         connection.query(queries.getProductByCategoryID(req.params.id), (err, results)=>{
             if(err){
                 console.log(err);
             }else{
-                res.render('product-category', {products : results, category : category, typeproduct : typeproduct});
+                size = Math.ceil(results.length/4);
+                connection.query(queries.getCategoryByID(categoryID),(err, categories)=>{
+                    if(err){
+                        console.log(err);
+                    }else{
+                        categoryName = categories[0].name;
+                        res.render('product-category', {products : results, category : category, typeproduct : typeproduct, count : results.length, size : size, page:page ,title : categoryName});
+                    }
+                })
             }
         });
     }
@@ -77,7 +94,7 @@ class SiteController {
             if(err){
                 console.log(err);
             }else{
-                res.render('product-category', {products : results, category : category, typeproduct : typeproduct});
+                res.render('product-category', {products : results, category : category, typeproduct : typeproduct, title: "Tìm kiếm sản phẩm",count : results.length});
             }
         });
     }
@@ -106,7 +123,13 @@ class SiteController {
     }
 
     admin(req, res){
-        res.render('admin', {layout: 'admain'});
+        connection.query(queries.getUserByID(req.signedCookies.userID),(err, results) =>{
+            if(err){
+                console.log(err);
+            }else{
+                res.render('admin', {layout: 'admain', username : results[0].name});
+            }
+        })
     }
 
 

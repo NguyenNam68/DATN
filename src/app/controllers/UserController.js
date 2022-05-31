@@ -83,21 +83,25 @@ class UserController{
     }
 
     showLogin(req, res){
-        var typeproduct;
-        connection.query(queries.listtype, (err, results) => {
-            if(err){
-                console.log(err);
-            }else{
-                typeproduct = results;
-            }
-        })
-        connection.query(queries.listcategory, (err, results) => {
-            if(err){
-                console.log(err);
-            }else{
-                res.render('login', {category : results, typeproduct : typeproduct});
-            }
-        })
+        if(req.cookies.userID){
+            res.redirect('/account');
+        }else{
+            var typeproduct;
+            connection.query(queries.listtype, (err, results) => {
+                if(err){
+                    console.log(err);
+                }else{
+                    typeproduct = results;
+                }
+            })
+            connection.query(queries.listcategory, (err, results) => {
+                if(err){
+                    console.log(err);
+                }else{
+                    res.render('login', {category : results, typeproduct : typeproduct});
+                }
+            })
+        }
     }
     
     login(req, res){
@@ -113,7 +117,7 @@ class UserController{
             }else{
                 category = results;
             }
-        })
+        });
         var typeproduct;
         connection.query(queries.listtype, (err, results) => {
             if(err){
@@ -121,9 +125,8 @@ class UserController{
             }else{
                 typeproduct = results;
             }
-        })
+        });
         connection.query(queries.getUserByUserName(data.username), (err, user)=>{
-            console.log(user);
             if(!user.length){
                 errors.push('Tên tài khoản không tồn tại');
                 res.render('login', {errors : errors, category : category, typeproduct : typeproduct});
@@ -131,7 +134,14 @@ class UserController{
             }else{
                 bcrypt.compare(data.password, user[0].password, (err, results)=>{
                     if(results == true){
-                        res.redirect('/');
+                        res.cookie('userID', user[0].id, {
+                            signed : true
+                        });
+                        if(user[0].role_id == 2 || user[0].role_id == 3){
+                            res.redirect('/admin');
+                        }else{
+                            res.redirect('/');
+                        }
                     }else{
                         errors.push('Mật khẩu không đúng');
                         res.render('login', {errors : errors, category : category, typeproduct : typeproduct});

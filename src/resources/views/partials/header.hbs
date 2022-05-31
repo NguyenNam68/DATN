@@ -31,18 +31,30 @@
             </div>
             <div class="c-7">
                 <div class="header-customer__nav row no-gutters">
+                    {{#if username}}
                     <div class="header-customer__wrap col-sm-6">
                         <ul class="header-customer__list">
                             <li class="header-customer__item">
-                                <a href="" class="header-customer__link hover-color-text">TÀI KHOẢN</a>
+                                <span class="header-customer__text hover-color-text">Xin chào, 
+                                    <span class="header-customer__name">{{username}}</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    {{else}}
+                    <div class="header-customer__wrap col-sm-6">
+                        <ul class="header-customer__list">
+                            <li class="header-customer__item">
+                                <a href="/register" class="header-customer__link hover-color-text">TÀI KHOẢN</a>
                             </li>
                         </ul>
                     </div>
                     <ul class="header-customer__list col-sm-1">
                         <li class="header-customer__item">
-                            <a href="" class="header-customer__link--text-B">LOGIN</a>
+                            <a href="/login" class="header-customer__link--text-B">LOGIN</a>
                         </li>
                     </ul>
+                    {{/if}}
                     <ul class="header-customer__list col-sm-1">
                         <li class="header-customer__item">
                             <a href="" class="header-customer__link--text-B">HỖ TRỢ</a>
@@ -139,7 +151,7 @@
             <div class="c-2 col-xs-2 col-sm-2">
                 <div class="header-cart">
                     <div class="header-cart__wrap">
-                        <a class="header-cart__link">
+                        <a href="/cart" class="header-cart__link">
                             <img src="/image/Home/shopping-bag.png" alt="" class="header-cart__icon">
                         </a>
                         <span class="header-cart__notice">
@@ -233,10 +245,10 @@
                                     <span class="header-cart__total-price">750.000₫</span>
                                 </div>
                                 <div class="header-cart__function">
-                                    <a href="" class="header-cart__view">
+                                    <a href="/cart" class="header-cart__view">
                                         View Cart
                                     </a>
-                                    <a href="" class="header-cart__checkout">
+                                    <a href="/checkout" class="header-cart__checkout">
                                         CheckOut
                                     </a>
                                 </div>
@@ -252,6 +264,11 @@
                 <div class="header-menu__wrap">
                     <ul class="header-menu__list">
                         {{#each category}}
+                        {{#if this.bttproduct}}
+                        <li class="header-menu__item">
+                            <a href="{{this.link}}" class="header-menu__link">{{this.name}}</a>
+                        </li>
+                        {{else}}
                         {{#if this.child}}
                         <li class="header-menu__item">
                             <a href="/product-category/{{this.id}}" class="header-menu__link">{{this.name}}</a>
@@ -262,6 +279,7 @@
                             <ul class="header-menu-child__list" id="haschild">
                             </ul>
                         </li>
+                        {{/if}}
                         {{/if}}
                         {{/each}}
                     </ul>

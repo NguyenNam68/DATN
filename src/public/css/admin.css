@@ -11,6 +11,9 @@ a {
   color: var(--black-color);
   text-decoration: none; }
 
+a:hover {
+  text-decoration: none; }
+
 /*NAV HEADER*/
 .nav-header {
   background-color: var(--primary-color);
@@ -186,7 +189,7 @@ a {
   padding: 8px 0; }
 
 table td.shrink {
-  max-width: 90px;
+  max-width: 100px;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis; }
@@ -266,6 +269,13 @@ table td.shrink {
 .modal-body {
   padding: 16px; }
 
+.modal-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  float: left;
+  margin-top: 10px; }
+
 .modal-box {
   flex: 1; }
 
@@ -278,6 +288,13 @@ table td.shrink {
 
 .modal-label--tall {
   display: block; }
+
+.modal-label--detail {
+  margin: 5px 15px 8px; }
+
+.modal-heading--detail {
+  padding-left: 12px;
+  font-size: 14px; }
 
 .modal-label__checkbox {
   margin-bottom: 15px; }
@@ -316,6 +333,10 @@ table td.shrink {
   margin-left: auto;
   display: block; }
 
+.js-modal-container-detail {
+  width: 1280px;
+  margin: 40px auto 0; }
+
 .btnBack {
   margin-top: 15px;
   text-align: center;
@@ -330,7 +351,7 @@ table td.shrink {
   color: var(--white-color); }
 
 .table-data__image {
-  width: 60%; }
+  width: 98%; }
 
 .table-data__content td {
   text-align: center; }
@@ -367,5 +388,52 @@ table td.shrink {
 .table-data__icon.fa-trash {
   right: -22px; }
 
+.data-status {
+  display: block;
+  text-align: center; }
+
+.data-status__on, .data-status__on:hove {
+  color: #009688; }
+
+.data-status__off, .data-status__off:hover {
+  color: #ff4b5a; }
+
+.data-image__add {
+  color: blue; }
+
+.data-image__add:hover {
+  opacity: 0.8; }
+
 .input-group__checkbox {
   margin: auto 10px auto 20px; }
+
+.input-group-text {
+  min-width: 150px;
+  justify-content: center; }
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
+.input__discount {
+  margin: auto 12px; }
+
+.span__discount {
+  display: flex;
+  align-items: center; }
+
+.edit__checkbox {
+  margin: auto 12px; }
+
+.input__checkbox {
+  display: flex; }
+
+.input__check {
+  width: 50% !important; }
+
+#detaildescription {
+  height: 100px; }

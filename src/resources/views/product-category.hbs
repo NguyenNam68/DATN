@@ -13,7 +13,7 @@
                                     <a href="" class="navsub-header__link">SHOP</a>
                                 </li>
                                 <li class="navsub-header__item">
-                                    <span class="navsub-header__content">{{text}}</span>
+                                    <span class="navsub-header__content">{{title}}</span>
                                 </li>
                             </ul>
                         </div>
@@ -132,10 +132,10 @@
                 <div class="col-sm-8 col-md-9 col-md-push-3">
                     <div class="product-header__wrapper">
                         <h1 class="product-header__title">
-                            Tarot
+                            {{title}}
                         </h1>
                     </div>
-                    <p class="product-header__result"> Showing 1-20 of 192 results</p>
+                    <p class="product-header__result"> Showing {{count}} of {{count}} results</p>
                     <form action="get" class="product-header__select-form">
                         <select name="orderby" id="orderby" class="product-header__select-list">
                             <option value="default"  class="product-header__select-option">Thứ tự mặc định</option>
@@ -150,11 +150,11 @@
                         {{#each products}}
                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 product__item">
                             <a href="{{this.id}}" class="product__link">
-                                <img src="/image/Product/{{this.image}}" alt="" class="product__image">
+                                <div style="background-image:url(/image/Product/{{this.image}})" alt="" class="product__image"></div>
                                 <div class="product__information">
                                     <h3 class="product__heading">{{this.name}}</h3>
                                     <span class="product__price">
-                                        {{this.price}}
+                                        {{this.price}}₫
                                     </span>
                                 </div>
                             </a>
@@ -167,8 +167,8 @@
                     </div>
                     <div class="col-sm-12 page">
                         <nav> 
-                            <ul class="pagination home-product__pagination">
-                                <li class="pagination-item pagination-item--active">
+                            <ul class="pagination home-product__pagination" id="pagination">
+                                {{!-- <li class="pagination-item pagination-item--active">
                                     <a href="" class="pagination-item__link">1</a>
                                 </li>
                                 <li class="pagination-item">
@@ -187,7 +187,7 @@
                                     <a href="" class="pagination-item__link">
                                         <i class="pagination-item__icon fas fa-chevron-right"></i>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </nav>
                     </div>

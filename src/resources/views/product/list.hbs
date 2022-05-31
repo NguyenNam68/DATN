@@ -76,27 +76,8 @@
         </div>
         <div class="col-sm-12 page">
             <nav> 
-                <ul class="pagination home-product__pagination">
-                    <li class="pagination-item pagination-item--active">
-                        <a href="" class="pagination-item__link">1</a>
-                    </li>
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item__link">2</a>
-                    </li>
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item__link">3</a>
-                    </li>
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item__link">...</a>
-                    </li>
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item__link">10</a>
-                    </li>
-                    <li class="pagination-item">
-                        <a href="" class="pagination-item__link">
-                            <i class="pagination-item__icon fas fa-chevron-right"></i>
-                        </a>
-                    </li>
+                <ul class="pagination home-product__pagination" id="pagination">
+                    
                 </ul>
             </nav>
         </div>
@@ -129,7 +110,8 @@
                             <i class="fas fa-image"></i>
                             Hình ảnh đại diện
                         </label>
-                        <input type="file" name="image" id="image">
+                        <input type="file" name="image" id="image" class="inputfile">
+                        <label for="image" class="btn btn-primary label-image">Chọn ảnh sản phẩm</label>
                     </div>
                 </div>
                 
@@ -197,7 +179,7 @@
 {{!-- <script type="text/javascript">
     CKEDITOR.replace('ckeditor', {height : 100});
 </script> --}}
-<!--Modal Edit-->
+<!--Modal Edit--> 
 {{!-- <div class="modal js-modal-edit">
     <div class="modal-container js-modal-container-edit">
         <div class="modal-close js-modal-close-edit">
@@ -205,11 +187,11 @@
         </div>
         <header class="modal-header">
             <i class="ti-bag modal-header-icon">
-                CẬP NHẬT {{title}}
+                CHI TIẾT {{title}}
             </i>
         </header>
         <div class="modal-body">
-            <form action="/admin/category" method="POST">
+            <form action="" method="">
 
                 <input type="hidden" id="id" class="modal-input modal-edit" name="id" value="" style="background-color:rgb(226, 218, 218); font-weight:bold">
 
@@ -226,7 +208,7 @@
                 <input type="text" id="link" class="modal-input modal-edit" name="link" value="">
 
                 <button class="modal__btn" type="submit">
-                    LƯU LẠI
+                    QUAY LẠI
                 </button>
             </form>
         </div>

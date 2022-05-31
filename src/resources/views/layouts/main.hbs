@@ -25,6 +25,47 @@
         {{{body}}}
         {{> footer}}
     </div>
+    <script>
+        var haschild = document.getElementById('haschild');
+        haschild.innerHTML =    `{{#each typeproduct}}
+                                    <li class="header-menu-child__item">
+                                        <a href="{{this.link}}" class="header-menu-child__link">
+                                            <span>{{this.name}}</span>
+                                        </a>
+                                    </li>
+                                {{/each}}`;
+        
+        $('input.input-qty').each(function() {
+            var $this = $(this),
+                qty = $this.parent().find('.is-form'),
+                min = Number($this.attr('min')),
+                max = Number($this.attr('max'))
+            if (min == 0) {
+                var d = 0
+            } else d = min
+            $(qty).on('click', function() {
+                if ($(this).hasClass('minus')) {
+                if (d > min) d += -1
+                } else if ($(this).hasClass('plus')) {
+                var x = Number($this.val()) + 1
+                if (x <= max) d += 1
+                }
+                $this.attr('value', d).val(d)
+            })
+        })
+
+        var pagination = document.getElementById('pagination');
+        var myPaging; 
+        for(var i = 1; i<{{size}}; i++){
+            myPaging += "<li class='pagination-item'>"+
+                        "a href='/product-category?page="+i+"' class='pagination-item__link'>"+i+"</a>"+
+                        "</li>"
+        }
+        if(typeof myPaging === "undefined"){
+            myPaging = "";
+        }
+        pagination.innerHTML = myPaging;
+    </script>
     <script src="/javascript/slick.js"></script>
     <script src="/javascript/slider.js"></script>
     <script src="/javascript/main.js"></script>

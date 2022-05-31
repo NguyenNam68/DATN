@@ -14,8 +14,10 @@ const upload = multer({
     storage: storage
 });
 
-router.post('/product/list',upload.single('image') ,productRouter.add);
-router.get('/product/list/delete/:id', productRouter.delete);
-router.get('/product/list', productRouter.showList);
+router.post('/list',upload.single('image') ,productRouter.add);
+router.post('/edit/:id', upload.single('image'), productRouter.update);
+router.get('/edit/:id', productRouter.showProduct);
+router.get('/list/delete/:id', productRouter.delete);
+router.get('/list', productRouter.showList);    
 
 module.exports = router;

@@ -1,0 +1,29 @@
+<div class="card">
+  <div class="card-header">
+    CẬP NHẬT THÔNG TIN {{title}}
+  </div>
+  <div class="card-body">
+    {{#each slider}}
+    <form action="/admin/slider/edit/{{this.id}}" method="POST">
+        <div class="input-group mb-3">
+          <label for="content" class="input-group-text" id="basic-addon1">Nội dung {{Slider}}</label>
+          <input type="text" id="content" name="content" value="{{this.content}}" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <label for="link" class="input-group-text" id="basic-addon2">Đường Dẫn</label>
+          <input type="text" id="link" name="link" value="{{this.link}}" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2">
+        </div>
+
+        <div class="input-group">
+          <button type="submit" class="modal__btn">LƯU LẠI</button>
+        </div>
+    </form>
+    {{/each}}
+    <div class="input-group">
+        <a href="/admin/slider/list" class="modal__btn btnBack">
+            QUAY LẠI
+        </a>
+    </div>
+  </div>
+</div>
