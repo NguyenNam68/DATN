@@ -16,8 +16,10 @@ const upload = multer({
 
 router.post('/list',upload.single('image') ,productRouter.add);
 router.post('/edit/:id', upload.single('image'), productRouter.update);
+router.post('/image', upload.single('imageProduct'),productRouter.addImage);
 router.get('/edit/:id', productRouter.showProduct);
 router.get('/list/delete/:id', productRouter.delete);
+router.get('/image', productRouter.viewAddImage);
 router.get('/list', productRouter.showList);    
 
 module.exports = router;

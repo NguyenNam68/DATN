@@ -4,7 +4,7 @@ const typeproductRouter = require('./typeproduct');
 const userRouter = require('./user');
 const productRouter = require('./product');
 const sliderRouter = require('./slider');
-const cartRouter = require('./cart');
+const orderRouter = require('./order');
 const authMiddleware = require('../app/Authentication/Auth');
 
 function route(app){
@@ -12,7 +12,7 @@ function route(app){
     app.use('/admin/category', authMiddleware.requireAuth, categoryRouter);
     app.use('/admin/product', authMiddleware.requireAuth, productRouter);
     app.use('/admin/slider', authMiddleware.requireAuth, sliderRouter);
-    app.use('/', cartRouter);
+    app.use('/admin/order', authMiddleware.requireAuth, orderRouter);
     app.use('/', userRouter);
     app.use('/', siteRouter);
 }

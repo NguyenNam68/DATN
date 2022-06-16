@@ -105,18 +105,18 @@ ul{
     }
     100%{
         opacity: 1;
-        right:0%;
+        right:0;
     }
 }
 
 @keyframes ProductButton{
     0%{
         opacity: 0;
-        right: -3%;
+        right: -10%;
     }
     100%{
         opacity: 1;
-        right:8.5%;
+        right:0;
     }
 }
 

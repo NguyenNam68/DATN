@@ -151,6 +151,21 @@ class UserController{
             }
         })
     }
+
+    logout(req, res){
+        res.clearCookie('userID');
+        res.redirect('/');
+    }
+
+    showList(req, res){
+        connection.query(queries.listuser, (err, results)=>{
+            if(err){
+                console.log(err);
+            }else{
+                res.render('user/list', {title: "Người Dùng", layout : "admain", user : results});
+            }
+        });
+    }
 }
 
 module.exports = new UserController;

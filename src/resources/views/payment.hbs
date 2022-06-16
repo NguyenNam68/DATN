@@ -1,0 +1,161 @@
+<!-- BEGIN MAIN -->
+<main>
+    <!-- Start Cart  -->
+    <div class="cart-box-main">
+        <form class="needs-validation" novalidate method="post" action="/payment">
+            <div class="container">
+                <div class="row">
+                        <div class="col-sm-7 col-lg-7 mb-3">
+                            <div class="checkout-address">
+                                <div class="title-left">
+                                    <h3>Điền thông tin nhận hàng</h3>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-12 col-xs-12">
+                                        <input autocomplete="off" autofocus required type="text" class="form-control" id="name" name="name" placeholder="Họ Và Tên Người Nhận" value="" required>
+                                        <div class="invalid-feedback"> Bạn phải nhập họ và tên </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-8 col-xs-12">
+                                        <input autocomplete="off" required type="email" class="form-control" id="email" name="email" placeholder="Email">
+                                        <div class="invalid-feedback"> Vui lòng nhập email </div>
+                                    </div>
+                                    <div class="col-lg-4 col-xs-12 smart-phone">
+                                        <input autocomplete="off" required type="tel" class="form-control" id="phone" name="phone" placeholder="Số Điện Thoại">
+                                        <div class="invalid-feedback"> Vui lòng nhập số điện thoại </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-12 col-xs-12">
+                                        <input autocomplete="off" required type="text" class="form-control" id="address" name="address" placeholder="Địa Chỉ" required>
+                                        <div class="invalid-feedback"> Vui lòng nhập địa chỉ nhận hàng </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3 col-xs-12">
+                                        <select name="ls_provinces" id="provinces" required="" class="provinces__name form-control">
+                                            <option value="9000">Tỉnh / Thành phố</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3 col-xs-12">
+                                        <select name="ls_district" id="district" required="" class="districts__name form-control">
+                                            <option value="9000">Quận / Huyện</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-lg-12 col-xs-12">
+                                        <div class="title-left">
+                                            <h3>Phương thức vận chuyển</h3>
+                                        </div>
+                                        <div class="shipment form-control">
+                                            <div class="shipment__input">
+                                                <input type="radio" class="shipment__radio" id="shipment" checked>
+                                                <label for="shipment" class="shipment__title">Giao hàng tận nơi</label>
+                                            </div>
+                                            <span class="shipment__fee">35,000₫</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mb-3 bb">
+                                    <div class="col-lg-12 col-xs-12">
+                                        <div class="title-left">
+                                            <h3>Phương thức thanh toán</h3>
+                                        </div>
+                                        <div class="pay-product">
+                                            <label class="pay-border shipment__input">
+                                                <div class="pay-wrapper">
+                                                    <input type="radio" class="shipment__radio" id="pay" name="payment" checked>
+                                                    <img src="https://hstatic.net/0/0/global/design/seller/image/payment/cod.svg" alt="">
+                                                    <label for="pay" class="shipment__title">Thanh toán khi giao hàng (COD)</label>
+                                                </div>
+                                            </label>
+                                            <label class="pay-border shipment__input" id="payment__live">
+                                                <div class="pay-wrapper pay-content">
+                                                    <span>
+                                                        Sau khi đặt thành công khách hàng xác nhận đơn bằng tin nhắn < MÃ ĐƠN HÀNG > gửi 0909738828 để chúng tôi kiểm tra chuẩn bị đơn hàng và giao cho nhà vận chuyển
+                                                        Da Đen chỉ nhận giao đơn từ 100k ̣̣̣̣(chưa tính phí ship)
+                                                        VD: #101899 Gửi 0909738828
+                                                        Đơn hàng HCM: 1->2 ngày giao hàng xác nhận đơn trước 15h00 hàng ngày
+                                                        Đơn hàng các tỉnh: 3->5 ngày giao hàng xác nhận đơn trước 15h00 hàng ngày
+                                                        Xin chân thành cảm ơn đã tin tưởng và ủng hộ suốt thời gian qua.
+                                                    </span>
+                                                </div>
+                                            </label>
+                                            <label class="pay-border shipment__input">
+                                                <div class="pay-wrapper">
+                                                    <input type="radio" class="shipment__radio" id="bank" name="payment">
+                                                    <img src="https://hstatic.net/0/0/global/design/seller/image/payment/other.svg" alt="">
+                                                    <label for="bank" class="shipment__title">Chuyển khoản qua ngân hàng</label>
+                                                </div>
+                                            </label>
+                                            <label class="pay-border shipment__input pay-hidden" id="payment__online">
+                                                <div class="pay-wrapper pay-content pay-content__center">
+                                                        * Ngân hàng TPCP Ngoại thương Việt Nam<br>
+                                                        Vietcombank - Chi nhánh Ngọc Khánh 0222002333663<br>
+                                                        Chủ tài khoản: Triệu Lệ Dĩnh<br>
+                                                        * Sau khi đặt thành công đơn hàng khách hàng xác nhận giao đơn bằng tin nhắn<br> 
+                                                        < MÃ ĐƠN HÀNG > < SỐ TIÊN CHUYỂN KHOẢN > gửi 0909738828<br>
+                                                        Vd: #101899 500.000đ Gửi 0912345678<br>
+                                                        * Chuyển khoản qua ngân hàng<br>
+                                                        Thông tin nội dung chuyển khoản :
+                                                        < Tên > < SĐT > < Mã Đơn Hàng >
+                                                        <p style="color:var(--primary-color);">XIN CHÂN THÀNH CẢM ƠN QUÝ KHÁCH!!!</p>
+                                                    </span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5 col-lg-5 mb-3">
+                            <div class="row">
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="odr-box">
+                                        <div class="title-left">
+                                            <h3>Thông tin giỏ hàng</h3>
+                                        </div>
+                                        <div class="rounded p-2 bg-light paymentCart">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="order-box">
+                                        <hr class="my-1">
+                                        <div class="d-flex payment__price">
+                                            <h4>Tạm tính</h4>
+                                            <div class="ml-auto font-weight-bold paymentTT">0₫ </div>
+                                        </div>
+                                        <div class="d-flex payment__price">
+                                            <h4>Giảm giá</h4>
+                                            <div class="ml-auto font-weight-bold"> 0₫ </div>
+                                        </div>
+                                        <div class="d-flex payment__price">
+                                            <h4>Phí vận chuyển</h4>
+                                            <div class="ml-auto font-weight-bold">35,000₫ </div>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex gr-total payment__price">
+                                            <h5>Thành tiền</h5>
+                                            <div class="ml-auto h5">
+                                                <input style="text-align:right" hidden type="text" class="form-control" id="totalprice" name="totalPrice" placeholder="" value="">
+                                                <input style="text-align:right" hidden type="text" class="form-control" id="totalamount" name="totalamount" placeholder="" value="">
+                                                <span style="text-align:right; font-size:20px" class="totalPrice"></span>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 d-flex shopping-box col-xs-12"> 
+                                    <button type="submit" class="btn-pay btn btn--primary">ĐẶT HÀNG</button>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</main>
+<!-- END MAIN -->

@@ -8,13 +8,13 @@
                         <input type="text" name="searchData" class="input__search form-control" placeholder="Nhập thông tin tìm kiếm...">
                         <i class="input__search--icon fas fa-search"></i>
                     </div>
-                    <div class="select__wrapper c-5 col-md-5 col-sm-5">
+                    {{!-- <div class="select__wrapper c-5 col-md-5 col-sm-5">
                         <select name="time" id="" class="select__input form-control">
                             <option value="" select="selected">Today</option>
                             <option value="">3 Days</option>
                             <option value="">1 Week</option>
                         </select>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="table-data__tool--right row c-5 col-md-5 col-sm-5">
                     <button class="btn btn-primary btn__add">THÊM {{title}}</button>
@@ -29,7 +29,7 @@
                             <th>Tình trạng</th>
                             <th>View</th>
                             <th></th>
-                            <th colspan="2"></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,9 +60,6 @@
                                 </a>
                             </td>
                             <td class="shrink" style="padding: 26px">
-                                <a href="/admin/slider/edit/{{this.id}}" class="table-data__edit">
-                                    <i class="table-data__icon fas fa-edit"></i>
-                                </a>
                                 <a href="/admin/slider/list/delete/{{this.id}}" class="table-data__delete">
                                     <i class="table-data__icon fas fa-trash"></i>
                                 </a>

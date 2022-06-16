@@ -20,6 +20,9 @@ class ProductController{
             if(err){
                 console.log(err);
             }else{
+                for(var i = 0; i < results.length; i++){
+                    results[i].price = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(results[i].price);
+                }
                 products = results.slice(start, end);
                 size = Math.ceil(results.length/perPage);
                 res.render('product/list', {products : products, category: category, size : size, currentPage : page ,title: "Sản Phẩm", layout: "admain"});
@@ -79,7 +82,7 @@ class ProductController{
     update(req, res){
         var now = new Date();
         var year = now.getFullYear();
-        var month = now.getMonth();
+        var month = now.getMonth() + 1;
         var date = now.getDate();
         var time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
         var dateupdate = `${year}-${month}-${date} ${time}`;
@@ -109,6 +112,30 @@ class ProductController{
             category_id : req.body.category_id
         };
         connection.query(queries.updateProduct(data), (err, results) =>{
+            if(err){
+                console.log(err);
+            }else{
+                res.redirect('/admin/product/list');
+            }
+        });
+    }
+
+    viewAddImage(req, res){
+        connection.query(queries.listproduct, (err, results) => {
+            if(err){
+                console.log(err);
+            }else{
+                res.render('product/image', {title : "Sản Phẩm", product : results, layout : "admain"})
+            }
+        });
+    };
+
+    addImage(req, res){
+        const data = {
+            id : req.body.id,
+            image : req.file.filename
+        }
+        connection.query(queries.addProductImage(data), (err, results)=>{
             if(err){
                 console.log(err);
             }else{

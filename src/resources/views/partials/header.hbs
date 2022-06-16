@@ -31,12 +31,29 @@
             </div>
             <div class="c-7">
                 <div class="header-customer__nav row no-gutters">
-                    {{#if username}}
+                    {{#if userID}}
                     <div class="header-customer__wrap col-sm-6">
                         <ul class="header-customer__list">
                             <li class="header-customer__item">
                                 <span class="header-customer__text hover-color-text">Xin chào, 
-                                    <span class="header-customer__name">{{username}}</span>
+                                    <span class="header-customer__name">
+                                        {{#if name}}
+                                        {{name}}
+                                        {{else}}
+                                        {{username}}
+                                        {{/if}}
+                                        <ul class="header__navbar-user-menu">
+                                            <li class="header__navbar-user-item">
+                                                <a href="/account">Tài Khoản Của Tôi</a>
+                                            </li>
+                                            <li class="header__navbar-user-item">
+                                                <a href="/history">Đơn Đã Mua</a>
+                                            </li>
+                                            <li class="header__navbar-user-item header__navbar-user-item--separate">
+                                                <a href="/logout">Đăng Xuất</a>
+                                            </li>
+                                        </ul>
+                                    </span>
                                 </span>
                             </li>
                         </ul>
@@ -155,7 +172,7 @@
                             <img src="/image/Home/shopping-bag.png" alt="" class="header-cart__icon">
                         </a>
                         <span class="header-cart__notice">
-                            0
+                            
                         </span>
                         <div class="header-cart__list">
                             <!--NO CART-->
@@ -167,88 +184,17 @@
                             <!--HAS CART-->
                             <div class="header-cart__list--has-cart">
                                 <ul class="header-cart__list-item">
-                                    <li class="header-cart__item">
-                                        <a href="" class="header-cart__item-img">
-                                            <img src="/image/ImageHome/startseed-oracle.jpeg" alt="" class="header-cart__img">
-                                        </a>
-                                        <div class="header-cart__item-info">
-                                            <a href="" class="header-cart__item-name">
-                                                Starseed Oracle
-                                            </a>
-                                            <div class="header-cart__item-detail">
-                                                <span class="header-cart__item-quantity">1</span>
-                                                <span class="header-cart__item-multiply">×</span>
-                                                <span class="header-cart__item-price">750.000₫</span>
-                                            </div>
-                                        </div>
-                                        <div class="header-cart__item-delete">
-                                            <span class="header-cart__delete-icon">x</span>
-                                        </div>
-                                    </li>
-                                    <li class="header-cart__item">
-                                        <a href="" class="header-cart__item-img">
-                                            <img src="/image/ImageHome/startseed-oracle.jpeg" alt="" class="header-cart__img">
-                                        </a>
-                                        <div class="header-cart__item-info">
-                                            <a href="" class="header-cart__item-name">
-                                                Starseed Oracle
-                                            </a>
-                                            <div class="header-cart__item-detail">
-                                                <span class="header-cart__item-quantity">1</span>
-                                                <span class="header-cart__item-multiply">×</span>
-                                                <span class="header-cart__item-price">750.000₫</span>
-                                            </div>
-                                        </div>
-                                        <div class="header-cart__item-delete">
-                                            <span class="header-cart__delete-icon">x</span>
-                                        </div>
-                                    </li>
-                                    <li class="header-cart__item">
-                                        <a href="" class="header-cart__item-img">
-                                            <img src="/image/ImageHome/startseed-oracle.jpeg" alt="" class="header-cart__img">
-                                        </a>
-                                        <div class="header-cart__item-info">
-                                            <a href="" class="header-cart__item-name">
-                                                Starseed Oracle
-                                            </a>
-                                            <div class="header-cart__item-detail">
-                                                <span class="header-cart__item-quantity">1</span>
-                                                <span class="header-cart__item-multiply">×</span>
-                                                <span class="header-cart__item-price">750.000₫</span>
-                                            </div>
-                                        </div>
-                                        <div class="header-cart__item-delete">
-                                            <span class="header-cart__delete-icon">x</span>
-                                        </div>
-                                    </li>
-                                    <li class="header-cart__item">
-                                        <a href="" class="header-cart__item-img">
-                                            <img src="/image/ImageHome/startseed-oracle.jpeg" alt="" class="header-cart__img">
-                                        </a>
-                                        <div class="header-cart__item-info">
-                                            <a href="" class="header-cart__item-name">
-                                                Starseed Oracle
-                                            </a>
-                                            <div class="header-cart__item-detail">
-                                                <span class="header-cart__item-quantity">1</span>
-                                                <span class="header-cart__item-multiply">×</span>
-                                                <span class="header-cart__item-price">750.000₫</span>
-                                            </div>
-                                        </div>
-                                        <div class="header-cart__item-delete">
-                                            <span class="header-cart__delete-icon">x</span>
-                                        </div>
-                                    </li>
+                                    
                                 </ul>
                                 <div class="header-cart__pay">
                                     <span class="header-cart__total-text">Tổng Tiền:</span>
-                                    <span class="header-cart__total-price">750.000₫</span>
+                                    <span class="header-cart__total-price"></span>
                                 </div>
                                 <div class="header-cart__function">
                                     <a href="/cart" class="header-cart__view">
                                         View Cart
                                     </a>
-                                    <a href="/checkout" class="header-cart__checkout">
+                                    <a href="/payment" class="header-cart__checkout">
                                         CheckOut
                                     </a>
                                 </div>

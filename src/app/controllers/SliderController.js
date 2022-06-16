@@ -69,13 +69,19 @@ class SliderController{
     }
 
     deleteSlider(req, res){
-        connection.query(queries.deleteSlider(req.params.id), (err, results)=>{
+        connection.query(queries.deleteImageSlider(req.params.id), (err, imageSliders) => {
             if(err){
                 console.log(err);
             }else{
-                res.redirect('/admin/slider/list');
+                connection.query(queries.deleteSlider(req.params.id), (err, results)=>{
+                    if(err){
+                        console.log(err);
+                    }else{
+                        res.redirect('/admin/slider/list');
+                    }
+                });
             }
-        })
+        });
     }
 }
 

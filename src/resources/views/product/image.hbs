@@ -1,0 +1,33 @@
+<div class="card">
+    <div class="card-header">
+        THÊM ẢNH CHO {{title}}
+    </div>
+    <div class="input-group mb-3">
+        <form action="/admin/product/image" method="POST" enctype="multipart/form-data" style="width:100%">
+            <div class="input-group mb-3" style="margin-top: 15px;">
+                <label for="id" class="input-group-text" id="basic-addon2">Sản phẩm</label>
+                <select required id="id" name="id" class="modal-input--tall" style="margin-top:10px;">
+                    <option value="" selected="selected">Chọn sản phẩm</option>
+                    {{#each product}}
+                    <option value="{{this.id}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="input-group mb-3">
+                <input onchange="previewUpload(event)" type="file" name="imageProduct" id="imageProduct" class="inputfile">
+                <label for="imageProduct" class="btn btn-primary label-image" id="labelImage">Chọn ảnh sản phẩm</label>
+                <img id="imagePreview" alt="">
+            </div>
+            
+            <div class="input-group">
+            <button type="submit" class="modal__btn">Thêm Ảnh</button>
+            </div>
+        </form>
+        <div class="input-group">
+            <a href="/admin/product/list" class="modal__btn btnBack">
+                QUAY LẠI
+            </a>
+        </div>
+    </div>
+</div>

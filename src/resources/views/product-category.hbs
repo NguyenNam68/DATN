@@ -148,19 +148,32 @@
                     </form>
                     <div class="product__wrapper">
                         {{#each products}}
-                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 product__item">
-                            <a href="{{this.id}}" class="product__link">
-                                <div style="background-image:url(/image/Product/{{this.image}})" alt="" class="product__image"></div>
-                                <div class="product__information">
-                                    <h3 class="product__heading">{{this.name}}</h3>
-                                    <span class="product__price">
-                                        {{this.price}}₫
-                                    </span>
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12">
+                            <div class="product__item">
+                                <a href="/detail/{{this.id}}" id="{{this.id}}" class="product__link">
+                                    <img src="/image/Product/{{this.image}}" class="product__image" alt="">
+                                    <div class="product__information">
+                                        <h3 class="product__heading">{{this.name}}</h3>
+                                        {{#if this.newprice}}
+                                        <div class="product__price has--old">
+                                            <p class="product__price--old">
+                                                {{this.price}}₫
+                                            </p>
+                                            <p class="product__price--new">
+                                                {{this.newprice}}₫
+                                            </p>
+                                        </div>
+                                        {{else}}
+                                        <span class="product__price">
+                                            <bdi>{{this.price}}₫</bdi>
+                                        </span>
+                                        {{/if}}
+                                    </div>
+                                </a>
+                                <div class="product__buttons">
+                                    <span class="product__button-text addCart">ADD TO CART</span>
+                                    <span class="product__button-text MoreInfo">MORE INFO</span>
                                 </div>
-                            </a>
-                            <div class="product__buttons">
-                                <span class="product__button-text addCart" id="addCart">ADD TO CART</span>
-                                <span class="product__button-text MoreInfo">MORE INFO</span>
                             </div>
                         </div>
                         {{/each}}
@@ -168,26 +181,6 @@
                     <div class="col-sm-12 page">
                         <nav> 
                             <ul class="pagination home-product__pagination" id="pagination">
-                                {{!-- <li class="pagination-item pagination-item--active">
-                                    <a href="" class="pagination-item__link">1</a>
-                                </li>
-                                <li class="pagination-item">
-                                    <a href="" class="pagination-item__link">2</a>
-                                </li>
-                                <li class="pagination-item">
-                                    <a href="" class="pagination-item__link">3</a>
-                                </li>
-                                <li class="pagination-item">
-                                    <a href="" class="pagination-item__link">...</a>
-                                </li>
-                                <li class="pagination-item">
-                                    <a href="" class="pagination-item__link">10</a>
-                                </li>
-                                <li class="pagination-item">
-                                    <a href="" class="pagination-item__link">
-                                        <i class="pagination-item__icon fas fa-chevron-right"></i>
-                                    </a>
-                                </li> --}}
                             </ul>
                         </nav>
                     </div>

@@ -84,6 +84,35 @@ a:hover{
     font-weight: bold;
 }
 
+.menu__list-down{
+    margin: 0 0 0 15px;
+    padding : 0;
+}
+
+.menu__item-down{
+    margin: 10px 0 0;
+}
+
+.menu__link-down{
+    text-decoration: none;
+    color: #484848;
+    font-weight: 400;
+    padding: 10px 16px 0;
+    font-size: 1.125rem;
+}
+
+.menu__link-down::before{
+    content: "";
+    display: inline-block;
+    margin-right: 12px;
+    width: 8px;
+    height: 2px;
+    background: #cfcfcf;
+    vertical-align: middle;
+    transition: all .15s ease-out;
+}
+
+
 .icon__dropdown{
     position: absolute;
     right: 0;
@@ -91,6 +120,228 @@ a:hover{
 }
 
 /*HEADER*/
+/** -------------------------------- 
+-- welcome
+-------------------------------- */
+.home__data-text{
+    color: var(--black-color);
+    padding: 0 10px;
+}
+
+.home__text-note{
+    padding: 5px 0 0 10px;
+    color: var(--text-color);
+}
+
+.p-4{
+    background-color: var(--dk-gray-300);
+}
+
+.welcome {
+	color: var(--dk-dark-bg);
+    padding: 0 8px;
+}
+
+.welcome .content {
+	background-color: var(--white-color);
+}
+
+.welcome p {
+	color: var(--dk-gray-800);
+}
+
+/** --------------------------------
+-- Statistics
+-------------------------------- */
+.statistics {
+	color: var(--dk-gray-200);
+}
+
+.statistics .box {
+	background-color: var(--white-color);
+}
+
+.statistics .box i {
+	width: 60px;
+	height: 60px;
+	line-height: 60px;
+}
+
+/** --------------------------------
+ -- Charts
+-------------------------------- */
+.charts .chart-container {
+	background-color: var(--white-color);
+}
+
+.charts .chart-container h3 {
+	color: var(--dk-gray-400)
+}
+
+/** --------------------------------
+-- users
+-------------------------------- */
+.admins .box .admin {
+	background-color: var(--white-color);
+}
+
+.text_admin-name{
+    color: var(--black-color);
+}
+
+.text_admin-role span{
+    color: var(--black-color);
+}
+
+
+/** --------------------------------
+-- statis
+-------------------------------- */
+.statis {
+	color: var(--dk-gray-100);
+}
+
+.statis .box {
+	position: relative;
+	overflow: hidden;
+	border-radius: 3px;
+}
+
+.statis .box h3:after {
+	content: "";
+	height: 2px;
+	width: 70%;
+	margin: auto;
+	background-color: rgba(255, 255, 255, 0.12);
+	display: block;
+	margin-top: 10px;
+}
+
+.statis .box i {
+	position: absolute;
+	height: 70px;
+	width: 70px;
+	font-size: 22px;
+	padding: 15px;
+	top: -25px;
+	left: -25px;
+	background-color: rgba(255, 255, 255, 0.15);
+	line-height: 60px;
+	text-align: right;
+	border-radius: 50%;
+}
+
+.progress {
+    vertical-align: baseline; 
+}
+
+.text-muted {
+    color: #8898aa !important; 
+}
+
+.tdl-holder {
+    margin: 0 auto; 
+}
+
+.tdl-holder ul {
+    list-style: none;
+    margin: 0;
+    padding: 0; 
+}
+
+.tdl-holder li {
+    background-color: transparent;
+    border-bottom: 1px solid #f3f3f3;
+    list-style: none none;
+    margin: 0;
+    padding: 0; 
+}
+
+.tdl-holder li span {
+    margin-left: 35px;
+    font-weight: 500;
+    vertical-align: middle;
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    -o-transition: all .2s linear;
+    transition: all 0.2s linear; 
+}
+
+.tdl-holder label {
+    cursor: pointer;
+    display: block;
+    line-height: 52px;
+    padding-left: 1.5rem;
+    position: relative;
+    margin: 0 !important;
+    color: #464a53; 
+}
+
+.tdl-holder label a {
+    color: #464a53;
+    line-height: normal;
+    height: 100%;
+    text-align: center;
+    text-decoration: none;
+    width: 50px;
+    transition: all 0.2s linear;
+    padding: 18px 0px;
+    font-size: 18px;
+    display: flex;
+    position: absolute;
+    right: 0;
+    display: inline-block; 
+}
+
+.tdl-holder input[type=checkbox] {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute; 
+}
+
+.tdl-holder input[type=checkbox] + i {
+    background-color: #ddd;
+    display: block;
+    height: 20px;
+    position: absolute;
+    top: 15px;
+    width: 20px;
+    z-index: 1; 
+}
+
+.tdl-holder input[type=checkbox]:checked + i {
+    border-color: #464a53; 
+}
+
+.tdl-holder input[type=checkbox]:checked + i::after {
+    content: "\f00c";
+    font-family: 'fontAwesome';
+    display: block;
+    left: 1px;
+    position: absolute;
+    top: -17px;
+    z-index: 2;
+    color: #162336; 
+}
+
+.tdl-holder input[type=checkbox]:checked ~ span {
+    text-decoration: line-through;
+    position: relative; 
+}
+
+.tdl-holder input[type=text] {
+    background-color: #fff;
+    height: 40px;
+    margin-top: 40px;
+    border-radius: 0.625rem;
+    border-color: rgba(22, 35, 54, 0.5);
+    color: #464a53; 
+}
+
+.main-color {
+	color: #ffc107
+}
+
 .header{
     background-color: var(--white-color);
     height: 5rem;

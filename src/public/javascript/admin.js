@@ -1,15 +1,17 @@
-//BUTTON ADD&EDIT
+if(location.pathname !=='/admin'){
+    //BUTTON ADD&EDIT
 
-const btnAdd = document.querySelector('.btn__add');
-const modalAdd = document.querySelector('.js-modal');
-const modalAddClose = document.querySelector('.js-modal-close');
+    const btnAdd = document.querySelector('.btn__add');
+    const modalAdd = document.querySelector('.js-modal');
+    const modalAddClose = document.querySelector('.js-modal-close');
 
-btnAdd.onclick = () =>{
-    modalAdd.style.display = 'block';
-}
+    btnAdd.onclick = () =>{
+        modalAdd.style.display = 'block';
+    }
 
-modalAddClose.onclick = () =>{
-    modalAdd.style.display = 'none';
+    modalAddClose.onclick = () =>{
+        modalAdd.style.display = 'none';
+    }
 }
 
 // const btnDetails = document.querySelectorAll('.table-data__detail');

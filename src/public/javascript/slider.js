@@ -1,88 +1,93 @@
-//Slider
-//Cho biết đang ở slide nào
-var currentSlideIndex=2;
+var link = location.pathname;
+if(link === "/"){
+    //Slider
+    //Cho biết đang ở slide nào
+    var currentSlideIndex=2;
 
-var slideArray = document.querySelectorAll('.sliders');
+    var slideArray = document.querySelectorAll('.sliders');
 
-//Đưa vào source HTML
-function buildSlider(){
-    //Hiển thị slide đầu tiên
-    document.getElementById("slide" + currentSlideIndex).style.left=0;
-}
-
-buildSlider();
-//Xử lý bấm nút chuyển slide trước
-function prevSlide(){
-    //Tìm slide trước
-    var nextSlideIndex;
-    if(currentSlideIndex === 2)
-    {
-        nextSlideIndex = slideArray.length+1;
-    }else{
-        nextSlideIndex = currentSlideIndex - 1;
+    //Đưa vào source HTML
+    function buildSlider(){
+        //Hiển thị slide đầu tiên
+        document.getElementById("slide" + currentSlideIndex).style.left=0;
     }
 
-    //Ẩn slide hiện tại, hiện slide "currentSlideIndex"
-    document.getElementById("slide" + nextSlideIndex).style.left = "-100%";
-    document.getElementById("slide" + currentSlideIndex).style.left = 0;
+    buildSlider();
+    //Xử lý bấm nút chuyển slide trước
+    function prevSlide(){
+        //Tìm slide trước
+        var nextSlideIndex;
+        if(currentSlideIndex === 2)
+        {
+            nextSlideIndex = slideArray.length+1;
+        }else{
+            nextSlideIndex = currentSlideIndex - 1;
+        }
 
-    //Thêm class để chuyển slide có animation
-    document.getElementById("slide" + nextSlideIndex)
-    .setAttribute("class" , "singleSlide slideInLeft");
-    document.getElementById("slide" + currentSlideIndex)
-    .setAttribute("class", "singleSlide slideOutRight");
+        //Ẩn slide hiện tại, hiện slide "currentSlideIndex"
+        document.getElementById("slide" + nextSlideIndex).style.left = "-100%";
+        document.getElementById("slide" + currentSlideIndex).style.left = 0;
 
-    //Cập nhật giá trị slide hiện tại
-    currentSlideIndex = nextSlideIndex;
-}
+        //Thêm class để chuyển slide có animation
+        document.getElementById("slide" + nextSlideIndex)
+        .setAttribute("class" , "singleSlide slideInLeft");
+        document.getElementById("slide" + currentSlideIndex)
+        .setAttribute("class", "singleSlide slideOutRight");
 
-//Xử lý bấm nút chuyển slide tiếp theo
-function nextSlide(){
-    var nextSlideIndex;
-    if(currentSlideIndex === slideArray.length + 1){
-        nextSlideIndex = 2;
-    }else{
-        nextSlideIndex = currentSlideIndex + 1;
+        //Cập nhật giá trị slide hiện tại
+        currentSlideIndex = nextSlideIndex;
     }
 
-    document.getElementById("slide" + nextSlideIndex).style.left = "100%";
-    document.getElementById("slide" + currentSlideIndex).style.left = 0;
+    //Xử lý bấm nút chuyển slide tiếp theo
+    function nextSlide(){
+        var nextSlideIndex;
+        if(currentSlideIndex === slideArray.length + 1){
+            nextSlideIndex = 2;
+        }else{
+            nextSlideIndex = currentSlideIndex + 1;
+        }
 
-    document.getElementById("slide" + nextSlideIndex)
-    .setAttribute("class", "singleSlide slideInRight");
-    document.getElementById("slide" + currentSlideIndex)
-    .setAttribute("class", "singleSlide slideOutLeft");
+        document.getElementById("slide" + nextSlideIndex).style.left = "100%";
+        document.getElementById("slide" + currentSlideIndex).style.left = 0;
 
-    currentSlideIndex = nextSlideIndex;
-}
+        document.getElementById("slide" + nextSlideIndex)
+        .setAttribute("class", "singleSlide slideInRight");
+        document.getElementById("slide" + currentSlideIndex)
+        .setAttribute("class", "singleSlide slideOutLeft");
 
-//Tự động chuyển Slide
-document.addEventListener("DOMContentLoaded", function(){
-    var button=document.getElementById('sliderNext');
-    //Tự động
-    var interval;
+        currentSlideIndex = nextSlideIndex;
+    }
+
+    var inter;
     var timer=function(){
-        interval = setInterval(function(){
-            button.click();
-        }, 9000);
+        inter = setInterval(function(){
+            nextSlide();
+        }, 5000);
     };
-    timer();
-})
-
-//Slick Slider Product
-
-
-//Slick Slider Feedback
-$(document).ready(function(){
-    $('.main-service__feedback-slide').slick({
+    //Tự động chuyển Slide
+    document.addEventListener("DOMContentLoaded", function(){
+        //Tự động
+        timer();
     });
-});
 
-$(document).ready(function(){
-    $('.autoplay').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 100,
+    var buttonSlides = document.querySelectorAll('.slideButton');
+    for(var i  = 0 ; i < buttonSlides.length; i++){
+        buttonSlides[i].addEventListener('click',function(){
+            clearInterval(inter);
+        });
+    }
+
+    //Slick Slider Product
+
+
+    //Slick Slider Feedback
+    $(document).ready(function(){
+        $('.main-service__feedback-slide').slick({
+            prevArrow : false,
+            nextArrow : false,
+            autoplay: true,
+            autoplaySpeed: 2000,
+            pauseOnFocus : true,
+        });
     });
-})
+}
