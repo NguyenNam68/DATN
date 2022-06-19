@@ -8,7 +8,7 @@
                         <div class="main-inner__wrap" style="background-image: url(image/Home/tarot_preview.jpg);">
                             <div class="main-inner__content">
                                 <div class="main-inner__img-box">
-                                    <a href="" class="main-inner__img-link">
+                                    <a href="/product-category/3" class="main-inner__img-link">
                                         <h3 class="main-inner__content-title">
                                             <span>BÀI TAROT</span>
                                         </h3>
@@ -21,7 +21,7 @@
                         <div class="main-inner__wrap" style="background-image: url(image/Home/oracle-preview.jpg);">
                             <div class="main-inner__content">
                                 <div class="main-inner__img-box">
-                                    <a href="" class="main-inner__img-link">
+                                    <a href="/product-category/4" class="main-inner__img-link">
                                         <h3 class="main-inner__content-title">
                                             <span>ORACLE & LENORMAND</span>
                                         </h3>
@@ -34,7 +34,7 @@
                         <div class="main-inner__wrap" style="background-image: url(image/Home/tarot-box.jpg);">
                             <div class="main-inner__content">
                                 <div class="main-inner__img-box">
-                                    <a href="" class="main-inner__img-link">
+                                    <a href="/product-category/6" class="main-inner__img-link">
                                         <h3 class="main-inner__content-title">
                                             <span>PHỤ KIỆN TAROT</span>
                                         </h3>
@@ -56,15 +56,20 @@
                                     BỘ BÀI MỚI NHẤT
                                 </h3>
                             </div>
-                            <ul class="row main-product__list-item" id="NewProduct">
+                            <ul class="row main-product__list-item capture-list-item" id="NewProduct">
+                                {{#each productDate}}
                                 <li class="col-md-3 col-sm-2 main-product__item c-3-4">
                                     <div class="main-product__box-item">
-                                        <a href="" class="main-product__link">
-                                            <img src="image/ImageHome/Manhua-Tarot.jpg" alt="" class="main-product__image">
-                                            <p class="main-product__name">Manhua Tarot</p>
+                                        <a href="/detail/{{this.id}}" class="main-product__link">
+                                            <img src="image/Product/{{this.image}}" alt="" class="main-product__image">
+                                            <p class="main-product__name">{{this.name}}</p>
                                             <div class="main-product__detail main-product__has-new">
-                                                <span class="main-product__old-price">750.000₫</span>
-                                                <span class="main-product__new-price">599.000₫</span>
+                                                {{#if this.newprice}}
+                                                <span class="main-product__old-price">{{this.price}}</span>
+                                                <span class="main-product__new-price">{{this.newprice}}</span>
+                                                {{else}}
+                                                <span class="main-product__new-price">{{this.price}}</span>
+                                                {{/if}}
                                             </div>
                                         </a>
                                         <div class="main-product__buttons">
@@ -73,54 +78,7 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="col-md-3 col-sm-2 main-product__item c-3-4">
-                                    <div class="main-product__box-item">
-                                        <a href="" class="main-product__link">
-                                            <img src="https://apustarotshop.com/wp-content/uploads/2020/09/starspinnertarot-300x300.jpg" alt="" class="main-product__image">
-                                            <p class="main-product__name">Star Spinner Tarot</p>
-                                            <div class="main-product__detail">
-                                                <span class="main-product__old-price"></span>
-                                                <span class="main-product__new-price">600.000₫</span>
-                                            </div>
-                                        </a>
-                                        <div class="main-product__buttons">
-                                            <span class="main-product__button-text addCart" id="addCart">ADD TO CART</span>
-                                            <span class="main-product__button-text MoreInfo">MORE INFO</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="col-md-3 col-sm-2 main-product__item c-3-4">
-                                    <div class="main-product__box-item">
-                                        <a href="" class="main-product__link">
-                                            <img src="image/ImageHome/Witchling-Academy-Tarot.jpg" alt="" class="main-product__image">
-                                            <p class="main-product__name">Witchling Academy Tarot</p>
-                                            <div class="main-product__detail main-product__has-new">
-                                                <span class="main-product__old-price">900.000₫</span>
-                                                <span class="main-product__new-price">800.000₫</span>
-                                            </div>
-                                        </a>
-                                        <div class="main-product__buttons">
-                                            <span class="main-product__button-text addCart" id="addCart">ADD TO CART</span>
-                                            <span class="main-product__button-text MoreInfo">MORE INFO</span>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="col-md-3 col-sm-2 main-product__item c-3-4">
-                                    <div class="main-product__box-item">
-                                        <a href="" class="main-product__link">
-                                            <img src="image/ImageHome/Nightmare-Before-Christmas-Tarot.jpg" alt="" class="main-product__image">
-                                            <p class="main-product__name">Nightmare Before Christmas Tarot</p>
-                                            <div class="main-product__detail">
-                                                <span class="main-product__old-price"></span>
-                                                <span class="main-product__new-price">499.000₫</span>
-                                            </div>    
-                                        </a>
-                                        <div class="main-product__buttons">
-                                            <span class="main-product__button-text addCart" id="addCart">ADD TO CART</span>
-                                            <span class="main-product__button-text MoreInfo">MORE INFO</span>
-                                        </div>
-                                    </div>
-                                </li>
+                                {{/each}}
                             </ul>
                             <div class="main-product__controls">
                                 <span class="main-product__left">
@@ -223,7 +181,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-sm-6 main-product__image">
+                                <div class="col-md-6 col-sm-6 main-product__order-image">
                                     <div class="main-product__image-container">
                                         <div class="row">
                                             <div class="col-md-12 col-sm-12 main-product__image-wrapper">
@@ -415,3 +373,6 @@
         </section>
     </div>
 </main>
+<script>
+
+</script>

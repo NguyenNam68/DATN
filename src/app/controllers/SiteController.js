@@ -3,7 +3,7 @@ const queries = require('../database/queries/crud');
 
 class SiteController {
     index(req, res){
-        var typeproduct, slider, sliderID, arraySlider=[];
+        var typeproduct, slider, sliderID, arraySlider=[], productDate;
         connection.query(queries.getSliderByStatus, (err, sliders)=>{
             if(err){
                 console.log(err);
@@ -30,6 +30,19 @@ class SiteController {
                 }
             }
         });
+        connection.query(queries.listproductDate, (err, results)=>{
+            if(err){
+                console.log(err);
+            }else{
+                for(var i = 0; i < results.length; i++){
+                    results[i].price = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(results[i].price);
+                    if(results[i].newprice){
+                        results[i].newprice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(results[i].newprice);
+                    }
+                }
+                productDate = results;
+            }
+        });
         connection.query(queries.listtype, (err, result) => {
             if(err){
                 console.log(err);
@@ -44,11 +57,11 @@ class SiteController {
                                 if(err){
                                     console.log(err);
                                 }else{
-                                    res.render('home', {category : results ,typeproduct : typeproduct, slider : slider ,name : user[0].name, username : user[0].username, userID : req.signedCookies.userID ,title: 'Apus Tarot Shop - Hệ thống quản trị'})
+                                    res.render('home', {category : results ,typeproduct : typeproduct, slider : slider , productDate : productDate, name : user[0].name, username : user[0].username, userID : req.signedCookies.userID ,title: 'Apus Tarot Shop - Hệ thống quản trị'})
                                 }
                             })
                         }else{
-                            res.render('home', {category : results ,typeproduct : typeproduct, slider : slider, title: 'Apus Tarot Shop - Hệ thống quản trị'});
+                            res.render('home', {category : results ,typeproduct : typeproduct, slider : slider, title: 'Apus Tarot Shop - Hệ thống quản trị', productDate : productDate});
                         }
                     }
                 });
@@ -90,6 +103,7 @@ class SiteController {
                     if(err){
                         console.log(err);
                     }else{
+                        
                         categoryName = categories[0].name;
                         res.render('product-category', {products : products, category : category, typeproduct : typeproduct, count : results.length, size : size, page:page ,title : categoryName});
                     }
@@ -117,14 +131,18 @@ class SiteController {
         });
         connection.query(queries.getImageProductByPrID(req.params.id), (err, imageProducts)=>{
             if(err){
-                console.console(err);
+                console.log(err);
             }else{
                 var imageprs = imageProducts;
                 connection.query(queries.getProductID(req.params.id), (err, results)=>{
                     if(err){
                         console.log(err);
                     }else{
-                        var nameProduct = results[0].name
+                        var nameProduct = results[0].name;
+                        results[0].price = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(results[0].price);
+                        if(results[0].newprice){
+                            results[0].newprice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(results[0].newprice);
+                        }
                         res.render('detail',{category : category, typeproduct : typeproduct, detail : results, nameProduct : nameProduct, imagePr : imageprs});
                     }
                 });

@@ -78,7 +78,18 @@ if(link === "/"){
     }
 
     //Slick Slider Product
-
+    $(document).ready(function(){
+        $('.capture-list-item').slick({
+            prevArrow : false,
+            nextArrow : false,
+            pauseOnFocus : true,
+            slidesToShow : 4,
+            slidesToScroll : 1,
+            prevArrow: '.main-product__left',
+            nextArrow: '.main-product__right',
+            centerPadding :50
+        });
+    });
 
     //Slick Slider Feedback
     $(document).ready(function(){

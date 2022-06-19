@@ -1,0 +1,50 @@
+<div class="card">
+  <div class="card-header">
+        ĐĂNG {{title}}
+  </div>
+  <div class="card-body">
+    <form action="/admin/post/add" method="POST">
+        <div class="input-group mb-3">
+          <label for="title" class="input-group-text" id="basic-addon1">Tiêu Đề</label>
+          <input type="text" id="title" name="title" value="" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon1">
+        </div>
+
+        <div class="input-group mb-3">
+          <label for="link" class="input-group-text" id="basic-addon2">Đường Dẫn</label>
+          <input type="text" id="link" name="link" value="" class="form-control" placeholder="" aria-label="" aria-describedby="basic-addon2">
+        </div>
+
+        <div class="input-group mb-3" style="display:flex">
+            <label for="category_id" class="input-group-text" id="basic-addon2">Danh Mục Bài Viết</label>
+            <select id="category_id" name="category_id" class="modal-input__select">
+                <option value="" selected="selected">Chọn danh mục cho sản phẩm</option>
+                {{#each category}}
+                {{#if this.bttproduct}}
+                <option value="{{this.id}}">{{this.name}}</option>
+                {{else}}
+                {{/if}}
+                {{/each}}
+            </select>
+        </div>
+
+        <div class="input-group mb-3">
+          <div>
+            <label for="content" class="input-group-text" id="basic-addon2 content">Nội Dung</label>
+          </div>
+          <textarea type="checkbox" checked="checked" id="content" class="input-group__checkbox" name="content" value="" placeholder="" aria-label="" aria-describedby="basic-addon2"></textarea>
+        </div>
+
+        <div class="input-group">
+          <button type="submit" class="modal__btn">ĐĂNG BÀI</button>
+        </div>
+    </form>
+    <div class="input-group">
+        <a href="/admin/post/list" class="modal__btn btnBack">
+            QUAY LẠI
+        </a>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    CKEDITOR.replace('content', {height : 500, width : 929});
+</script>

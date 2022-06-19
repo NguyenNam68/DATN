@@ -5,6 +5,7 @@ const userRouter = require('./user');
 const productRouter = require('./product');
 const sliderRouter = require('./slider');
 const orderRouter = require('./order');
+const postRouter = require('./post');
 const authMiddleware = require('../app/Authentication/Auth');
 
 function route(app){
@@ -13,6 +14,7 @@ function route(app){
     app.use('/admin/product', authMiddleware.requireAuth, productRouter);
     app.use('/admin/slider', authMiddleware.requireAuth, sliderRouter);
     app.use('/admin/order', authMiddleware.requireAuth, orderRouter);
+    app.use('/admin/post', authMiddleware.requireAuth, postRouter);
     app.use('/', userRouter);
     app.use('/', siteRouter);
 }

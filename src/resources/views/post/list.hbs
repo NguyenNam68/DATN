@@ -1,0 +1,122 @@
+<div class="main">
+    <div class="row">
+        <div class="c-12 col-md-12 col-sm-12">
+            <h3 class="title-table">THÔNG TIN {{title}}</h3>
+            <div class="table-data__tool row">
+                <div class="table-data__tool--left row c-7 col-md-7 col-sm-7">
+                    <div class="input__wrapper c-7 col-md-7 col-sm-7">
+                        <input type="text" name="searchData" class="input__search form-control" placeholder="Nhập thông tin tìm kiếm...">
+                        <i class="input__search--icon fas fa-search"></i>
+                    </div>
+                    {{!-- <div class="select__wrapper c-5 col-md-5 col-sm-5">
+                        <select name="time" id="" class="select__input form-control">
+                            <option value="" select="selected">Today</option>
+                            <option value="">3 Days</option>
+                            <option value="">1 Week</option>
+                        </select>
+                    </div> --}}
+                </div>
+                <div class="table-data__tool--right row c-5 col-md-5 col-sm-5">
+                    <a class="btn btn-primary btn__add" href="/admin/post/add">THÊM {{title}}</a>
+                </div>
+            </div>
+            <div class="table-data__wrapper">
+                <table class="table-data__content table-layout" border="2" cellspacing="1">
+                    <thead>
+                        <tr>
+                            <th>Mã Bài Viết</th>
+                            <th>Ngày Đăng</th>
+                            <th>Người Viết</th>
+                            <th>Tiêu Đề</th>
+                            <th>Thuộc Danh Mục</th>
+                            <th>Tình Trạng</th>
+                            <th>View</th>
+                            <th colspan="2"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each post}}
+                        <tr id="{{this.id}}">
+                            <td class="shrink">
+                                <span>{{this.id}}</span>
+                            </td>
+                            <td class="shrink">
+                                <span>{{this.datecreate}}</span>
+                            </td>
+                            <td class="shrink">
+                                <span>{{this.username}}</span>
+                            </td>
+                            <td class="shrink">
+                                <span class="titlePost">{{this.title}}</span>
+                            </td>
+                            <td class="shrink">
+                                <span>{{this.categoryname}}</span>
+                            </td>
+                            <td class="shrink content-hidden">
+                                <span class="contentPost">{{this.content}}</span>
+                            </td>
+                            {{#if this.status}}
+                            <td class="shrink">
+                                <span id="statusProduct" style="cursor:pointer; color: rgb(226, 126, 33)">Hiển Thị</span>
+                            </td>
+                            {{else}}
+                            <td class="shrink">
+                                <span id="statusProduct" style="cursor:pointer; color: #00FF00">Đã Ẩn</span>
+                            </td>
+                            {{/if}}
+                            <td class="shrink table-data__detail" id="detailProduct" style="cursor:pointer; color: purple">Xem Nội Dung</td>
+                            <td class="shrink" style="padding: 26px">
+                                <a href="/admin/product/edit/{{this.id}}" class="table-data__edit">
+                                    <i class="table-data__icon fas fa-edit"></i>
+                                </a>
+                                <a href="/admin/product/list/delete/{{this.id}}" class="table-data__delete">
+                                    <i class="table-data__icon fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-12 page">
+            <nav> 
+                <ul class="pagination home-product__pagination" id="pagination">
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<!--Modal Edit--> 
+<div class="modal js-modal-detail">
+    <div class="modal-container js-modal-container-detail">
+        <div class="modal-close js-modal-close-detail">
+            <i class="ti-close"></i>
+        </div>
+        <header class="modal-header">
+            <i class="ti-bag modal-header-icon">
+                NỘI DUNG {{title}}
+            </i>
+        </header>
+        <div class="modal-body">
+            <form action="" method="">
+                <label class="modal-label" for="content">
+                    <span>TIÊU ĐỀ BÀI VIẾT : </span>
+                    <span class="modal-title"></span>
+                </label>
+                <div class="modal-content"></div>
+
+                <button class="modal__btn" type="submit">
+                    QUAY LẠI
+                </button>
+            </form>
+        </div>
+        <footer class="modal-footer">
+            <p class="modal-help">
+                Need 
+                <a href="">help?</a>
+            </p>
+        </footer>
+    </div>
+</div>

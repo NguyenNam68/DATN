@@ -2,14 +2,16 @@ const crud = {
     listcategory : `SELECT * FROM CATEGORY`,
     listtype : `SELECT * FROM TYPEPRODUCT`,
     listproduct : `SELECT * FROM PRODUCT`,
+    listproductDate : `SELECT * FROM apustarot.product where month(datecreate)-5>0 ORDER BY datecreate DESC LIMIT 8;`,
     listrole : `SELECT * FROM ROLE`,
     listuser : `SELECT * FROM USER WHERE USER.role_id = 5`,
     listslider : `SELECT * FROM SLIDER`,
     listorder : `SELECT * FROM APUSTAROT.ORDER ORDER BY dateorder`,
     listorderdetail : `SELECT * FROM APUSTAROT.DETAILORDER`,
-    listamountorder : `select * from apustarot.detailorder inner join apustarot.order on apustarot.detailorder.order_id = apustarot.order.id where apustarot.order.status = 0;`,
-    listuserwithrole : `select apustarot.user.id, apustarot.user.image ,apustarot.user.name, apustarot.user.phone ,apustarot.role.name as role from apustarot.user 
+    listamountorder : `SELECT * FROM apustarot.detailorder inner join apustarot.order on apustarot.detailorder.order_id = apustarot.order.id where apustarot.order.status = 0;`,
+    listuserwithrole : `SELECT apustarot.user.id, apustarot.user.image ,apustarot.user.name, apustarot.user.phone ,apustarot.role.name as role from apustarot.user 
                         inner join apustarot.role on apustarot.user.role_id = apustarot.role.id where apustarot.user.role_id != 5;`,
+    listpost : `SELECT apustarot.post.id, title, content, apustarot.post.link, apustarot.post.datecreate, apustarot.post.status, apustarot.user.name as username, apustarot.category.name as categoryname from apustarot.post, apustarot.user, apustarot.category where apustarot.post.creater = apustarot.user.id and apustarot.post.category_id = apustarot.category.id;`,
 
     addCategory : (data) =>{
         return `INSERT INTO CATEGORY (id, name, link, child) VALUES (NULL, '${data.name}', '${data.link}', '${data.child}');`
@@ -45,6 +47,9 @@ const crud = {
     },
     addDetailOrder : (data) =>{
         return `INSERT INTO DETAILORDER (id, amount, unitprice, order_id, product_id) VALUES (NULL, ${data.amount}, ${data.unitprice}, ${data.order_id}, ${data.product_id});`
+    },
+    addPost : (data) => {
+        return `INSERT INTO POST (id, title, content, link, datecreate, dateupdate, status, creater, fixter, category_id) VALUES (NULL, '${data.title}', '${data.content}', '${data.link}', '${data.datecreate}', NULL, 1, '${data.creater}', '${data.creater}', '${data.category_id}')`
     },
 
     getCategoryByID : (id) =>{
@@ -84,11 +89,9 @@ const crud = {
     getImageProductByPrID : (id) =>{
         return `SELECT * FROM IMAGEPRODUCT WHERE product_id = ${id};`
     },
-
     getOrderByID : (id) =>{
         return `SELECT * FROM APUSTAROT.ORDER WHERE APUSTAROT.ORDER.id = '${id}';`
     },
-
     getRoleByID : (id) =>{
         return `SELECT * FROM APUSTAROT.ROLE WHERE APUSTAROT.ROLE.id = '${id}';`
     },

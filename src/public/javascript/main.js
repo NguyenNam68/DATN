@@ -55,6 +55,7 @@ var countCartItem = document.querySelector('.header-cart__notice');
 var cartTotal = document.querySelector('.header-cart__total-price');
 var productPrice;
 var giohang = new Array();
+var cart = new Array();
 var sp = new Object();
 if(!countCartItem.innerText){
     countCartItem.innerHTML = 0;
@@ -67,15 +68,23 @@ btnCarts.forEach(function(btnCart, index){
         var product = btnItem.parentElement.parentElement;
         var productName = product.querySelector('.product__heading').innerText;
         var productImg = product.querySelector('.product__image').src;
-        var productHasNew = product.querySelector('.has--old');
+        var productHasNew = product.querySelector('.product__price--has--old');
         var productID = product.querySelector('.product__link').id;
         if(productHasNew) {
             productPrice = product.querySelector('.product__price--new').innerText;
+            productPrice = productPrice.replace('₫','');
+            productPrice = productPrice.split('.').join('');
         }else{
             productPrice = product.querySelector('.product__price').innerText;
+            productPrice = productPrice.replace('₫','');
+            productPrice = productPrice.split('.').join('');
         }
         addCart(productName, productImg, productPrice, productID);
+        localStorage.removeItem("giohang");
         localStorage.setItem("giohang", JSON.stringify(giohang));
+        console.log(cart);
+        showCartIcon();
+        deleteCart();
     });
 });
 
@@ -103,7 +112,7 @@ function addCart(productName, productImg, productPrice, productID){
                                 "<span class='header-cart__delete-icon'>x</span>"+
                             "</div>"+
                         "</li>";
-    if(cartItems.length==0){
+    if(cartItems.length==0 && localStorage.length<1 && cart.length<1){
         count = count + 1;
         cartList.innerHTML += cartContent;
         countCartItem.innerHTML = count;
@@ -117,7 +126,7 @@ function addCart(productName, productImg, productPrice, productID){
             price : productPrice,
         });
         giohang.push(sp);
-        deleteCart();
+        cart.push(sp);
     }else{
         for(var i = 0; i < cartItems.length; i++){
             if(cartItems[i].querySelector('.header-cart__item-name').innerText == productName){
@@ -153,7 +162,7 @@ function addCart(productName, productImg, productPrice, productID){
                 price : productPrice,
             });
             giohang.push(sp);
-            deleteCart();
+            cart.push(sp);
         };
     };
 };
@@ -166,14 +175,6 @@ function deleteCart(){
     var productDel = document.querySelectorAll('.header-cart__delete-icon');
     for(var i = 0; i < cartItem.length; i++){
         productDel[i].addEventListener('click', function(e){
-            var cartEvent = e.target;
-            var cartParent = cartEvent.parentElement.parentElement;
-            var currentQuantity = cartParent.querySelector('.header-cart__item-quantity').innerText;
-            var currentPrice = cartParent.querySelector('.header-cart__item-price').innerText;
-            var currentID = cartParent.querySelector('.header-cart__item-name');
-            sum.innerText = (parseInt(sum.innerText)-1);
-            totalmoney.innerText = (parseInt(totalmoney.innerText)-(parseInt(currentQuantity)*parseInt(currentPrice)));
-            cartParent.remove();
             if(parseInt(totalmoney.innerText)==0){
                 hasCart.style.display = 'none';
                 noCart.style.display = 'block';
@@ -223,15 +224,13 @@ function showCartIcon(){
                 hasCart.style.display = 'block';
                 noCart.style.display = 'none';
             }
-            deleteCart();
         }
     }
 }
-showCartIcon();
 
 //Show Cart Main
 function showCart(){
-
+    showCartIcon();
     var gh = localStorage.getItem("giohang");
     var cart = JSON.parse(gh);
     var tongtien = 0, myHtml="";
@@ -272,7 +271,6 @@ function showCart(){
         }
         cartSum.innerText = formatMoney.format(tongtien);;
         viewCart.innerHTML = myHtml;
-        deleteCart();
         var cartMoney = document.querySelector('.cartMoney');
         cartMoney.innerText = cartSum.innerText;
     }
@@ -284,7 +282,7 @@ if(location.pathname == '/cart'){
 
 //Show Payment
 function showPayment(){
-
+    showCartIcon();
     var gh = localStorage.getItem("giohang");
     var cart = JSON.parse(gh);
     var tongtien = 0, myHtml="";
@@ -311,10 +309,12 @@ function showPayment(){
                         "</div>"
             tongtien += thanhtien;
         }
+        tamtinh = tongtien;
+        tongtien = tongtien + 35000;
         var cartTT = document.querySelector('.paymentTT');
         var cartTong = document.querySelector('#totalprice');
         var tong = formatMoney.format(tongtien);
-        cartTT.innerText = tong;
+        cartTT.innerText = formatMoney.format(tamtinh);
         cartTong.value = tongtien;
         var paymentCart = document.querySelector('.paymentCart');
         paymentCart.innerHTML = myHtml;
@@ -322,7 +322,6 @@ function showPayment(){
         totalPrice.innerText = tong;
         var totalAmount = document.querySelector('#totalamount');
         totalAmount.value = cart.length;
-        deleteCart();
     }
     var btnPay = document.querySelector('.btn-pay');
     btnPay.addEventListener('click', function(event){

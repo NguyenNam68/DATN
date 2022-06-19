@@ -489,6 +489,23 @@ table td.shrink{
     text-overflow: ellipsis;
 }
 
+.content-hidden{
+    display: none;
+}
+
+.modal-content{
+    overflow-x:hidden;
+    overflow-y:auto;
+    height : 400px;
+    margin-bottom: 10px
+}
+
+.modal-title{
+    color: #009688;
+    font-style: bold;
+    font-weight: 700;
+}
+
 @keyframes popUP{
     from{
         top:-100px;
@@ -632,6 +649,14 @@ table td.shrink{
     font-size: 15px;
     border-radius: 5px;
     margin-bottom: 10px;
+}
+
+.modal-input__select{
+    padding : 10px;
+    border : 1px solid #ccc;
+    width : 85%;
+    font-size : 15px;
+    border-radius: 5px;
 }
 
 .modal-input__checkbox{

@@ -1,4 +1,4 @@
-if(location.pathname !=='/admin'){
+if(location.pathname !=='/admin' && location.pathname !=='/admin/post/list'){
     //BUTTON ADD&EDIT
 
     const btnAdd = document.querySelector('.btn__add');
@@ -14,27 +14,26 @@ if(location.pathname !=='/admin'){
     }
 }
 
-// const btnDetails = document.querySelectorAll('.table-data__detail');
-// const modalDetail = document.querySelector('.js-modal-detail');
-// const modalDetailClose = document.querySelector('.js-modal-close-detail');
-// // const modalInputs = document.querySelectorAll('.modal-detail');
+if(location.pathname == '/admin/post/list'){
+    const btnDetails = document.querySelectorAll('.table-data__detail');
+    const modalDetail = document.querySelector('.js-modal-detail');
+    const modalDetailClose = document.querySelector('.js-modal-close-detail');
 
-// const table = document.querySelector('.table-data__content');
+    for(let i = 0; i < btnDetails.length; i++){
+        btnDetails[i].onclick = () =>{
+            const detail = btnDetails[i].parentElement;
+            const modalContent = document.querySelector('.modal-content');
+            const modalTitle = document.querySelector('.modal-title');
+            modalContent.innerHTML = detail.querySelector('.contentPost').innerText;
+            modalTitle.innerHTML = detail.querySelector('.titlePost').innerText;
+            modalDetail.style.display = 'block';
+        }
+    }
 
-// for(let i = 0; i < btnDetails.length; i++){
-//     btnDetails[i].onclick = () =>{
-//         for(let j = 0; j < table.rows[i+1].cells.length - 1; j++){
-//             for(let k = 0; k < modalInputs.length-1; k++){
-//                 modalInputs[k+1].value = table.rows[i+1].cells[k].innerText.substring();
-//             }
-//         }
-//         modalDetail.style.display = 'block';
-//     }
-// }
-
-// modalEditClose.onclick = () =>{
-//     modalEdit.style.display = 'none';
-// }
+    modalDetailClose.onclick = () =>{
+        modalDetail.style.display = 'none';
+}
+}
 
 function previewUpload(e){
     var preview = document.getElementById('imagePreview');

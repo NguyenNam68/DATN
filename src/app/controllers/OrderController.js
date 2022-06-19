@@ -20,7 +20,7 @@ class OrderController{
                 size = Math.ceil(results.length/perPage);
                 res.render('order/list', {order : orders, size : size, currentPage : page,title : "ĐƠN HÀNG" ,layout : 'admain'});
             }
-        })
+        });
     }
 }
 

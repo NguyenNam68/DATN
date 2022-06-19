@@ -155,17 +155,17 @@
                                     <div class="product__information">
                                         <h3 class="product__heading">{{this.name}}</h3>
                                         {{#if this.newprice}}
-                                        <div class="product__price has--old">
+                                        <div class="product__price--has--old">
                                             <p class="product__price--old">
-                                                {{this.price}}₫
+                                                {{this.price}}
                                             </p>
                                             <p class="product__price--new">
-                                                {{this.newprice}}₫
+                                                {{this.newprice}}
                                             </p>
                                         </div>
                                         {{else}}
                                         <span class="product__price">
-                                            <bdi>{{this.price}}₫</bdi>
+                                            <bdi>{{this.price}}</bdi>
                                         </span>
                                         {{/if}}
                                     </div>
@@ -189,3 +189,24 @@
         </div>
     </div>
 </main>
+<script>
+    var formatMoney = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
+    var productPriceOld = document.querySelectorAll('.product__price--old');
+    var productPriceNew = document.querySelectorAll('.product__price--new');
+    var productPrice    = document.querySelectorAll('.product__price');
+    if(productPriceOld){
+        for(var i = 0; i < productPriceOld.length; i++){
+            productPriceOld[i].innerText = formatMoney.format(parseInt(productPriceOld[i].innerText));
+        }
+    };
+    if(productPriceNew){
+        for(var i = 0; i < productPriceNew.length; i++){
+            productPriceNew[i].innerText = formatMoney.format(parseInt(productPriceNew[i].innerText));
+        }
+    };
+    if(productPrice){
+        for(var i = 0; i < productPrice.length; i++){
+            productPrice[i].innerText = formatMoney.format(parseInt(productPrice[i].innerText));
+        }
+    }
+</script>
