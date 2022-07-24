@@ -57,12 +57,173 @@ class SiteController {
                                 if(err){
                                     console.log(err);
                                 }else{
-                                    res.render('home', {category : results ,typeproduct : typeproduct, slider : slider , productDate : productDate, name : user[0].name, username : user[0].username, userID : req.signedCookies.userID ,title: 'Apus Tarot Shop - Hệ thống quản trị'})
+                                    res.render('home', {size : 1, currentPage: 1, category : results ,typeproduct : typeproduct, slider : slider , productDate : productDate, name : user[0].name, username : user[0].username, userID : req.signedCookies.userID ,title: 'Apus Tarot Shop - Hệ thống quản trị'})
                                 }
                             })
                         }else{
-                            res.render('home', {category : results ,typeproduct : typeproduct, slider : slider, title: 'Apus Tarot Shop - Hệ thống quản trị', productDate : productDate});
+                            res.render('home', {size : 1, currentPage: 1, category : results ,typeproduct : typeproduct, slider : slider, title: 'Apus Tarot Shop - Hệ thống quản trị', productDate : productDate});
                         }
+                    }
+                });
+            }
+        });
+    }
+
+    showIntroduce(req, res){
+        var typeproduct;
+        connection.query(queries.listtype, (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                typeproduct = result;
+                connection.query(queries.listcategory, (err, results) => {
+                    if(err){
+                        console.log(err);
+                    }else{
+                        if(req.signedCookies.userID){
+                            connection.query(queries.getUserByID(req.signedCookies.userID), (err, user) => {
+                                if(err){
+                                    console.log(err);
+                                }else{
+                                    res.render('introduce', {size : 1, currentPage: 1, category : results ,typeproduct : typeproduct  , name : user[0].name, username : user[0].username, userID : req.signedCookies.userID ,title: 'Apus Tarot Shop - Hệ thống quản trị'})
+                                }
+                            })
+                        }else{
+                            res.render('introduce', {size : 1, currentPage: 1, category : results ,typeproduct : typeproduct, title: 'Apus Tarot Shop - Hệ thống quản trị' });
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    showBlog(req, res){
+        var typeproduct, post;
+        var perPage = 3;
+        var page = (req.query.page) || 1;
+        var start = (page - 1)*perPage;
+        var end = page*perPage;
+        var size;
+        connection.query(queries.listtype, (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                typeproduct = result;
+                connection.query(queries.listpost, (err, posts)=>{
+                    if(err){
+                        console.log(err);
+                    }else{
+                        for(var i = 0 ; i < posts.length ; i++){
+                            posts[i].datecreate = `Ngày ${posts[i].datecreate.getDate()} Tháng ${posts[i].datecreate.getMonth()+1} Năm ${posts[i].datecreate.getFullYear()}`;
+                        }
+                        post = posts.slice(start, end);
+                        size = Math.ceil(posts.length/perPage);
+                        connection.query(queries.listcategory, (err, results) => {
+                            if(err){
+                                console.log(err);
+                            }else{
+                                if(req.signedCookies.userID){
+                                    connection.query(queries.getUserByID(req.signedCookies.userID), (err, user) => {
+                                        if(err){
+                                            console.log(err);
+                                        }else{
+                                            res.render('blog', {category : results ,typeproduct : typeproduct  , size : size, currentPage:page, name : user[0].name, post : post,username : user[0].username, userID : req.signedCookies.userID ,title: 'Apus Tarot Shop - Hệ thống quản trị'})
+                                        }
+                                    })
+                                }else{
+                                    res.render('blog', {category : results ,typeproduct : typeproduct, post : post, title: 'Apus Tarot Shop - Hệ thống quản trị', size : size, currentPage:page });
+                                }
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    showPost(req,res){
+        var typeproduct, post, samepost;
+        connection.query(queries.listtype, (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                typeproduct = result;
+                connection.query(queries.getPostByID(req.params.id), (err, posts)=>{
+                    if(err){
+                        console.log(err);
+                    }else{
+                        posts[0].datecreate = `Ngày ${posts[0].datecreate.getDate()} Tháng ${posts[0].datecreate.getMonth()+1} Năm ${posts[0].datecreate.getFullYear()}`;
+                        post = posts;
+                        connection.query(queries.getPostByUserID(posts[0].creater), (err, author)=>{
+                            if(err){
+                                console.log(err);
+                            }else{
+                                samepost = author;
+                                connection.query(queries.listcategory, (err, results) => {
+                                    if(err){
+                                        console.log(err);
+                                    }else{
+                                        if(req.signedCookies.userID){
+                                            connection.query(queries.getUserByID(req.signedCookies.userID), (err, user) => {
+                                                if(err){
+                                                    console.log(err);
+                                                }else{
+                                                    res.render('post', {size : 1, currentPage: 1, samepost: samepost, category : results ,typeproduct : typeproduct , name : user[0].name, post : post ,username : user[0].username, userID : req.signedCookies.userID ,title: 'Apus Tarot Shop - Hệ thống quản trị'})
+                                                }
+                                            })
+                                        }else{
+                                            res.render('post', {size : 1, currentPage: 1, samepost: samepost, category : results ,typeproduct : typeproduct, post : post, title: 'Apus Tarot Shop - Hệ thống quản trị'});
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+    showBlogSearch(req, res){
+        var typeproduct, post;
+        var perPage = 3;
+        var page = (req.query.page) || 1;
+        var start = (page - 1)*perPage;
+        var end = page*perPage;
+        var size;
+        var name = req.query.titlepost;
+        console.log(name);
+        connection.query(queries.listtype, (err, result) => {
+            if(err){
+                console.log(err);
+            }else{
+                typeproduct = result;
+                connection.query(queries.getPostByName(name), (err, posts)=>{
+                    if(err){
+                        console.log(err);
+                    }else{
+                        for(var i = 0 ; i < posts.length ; i++){
+                            posts[i].datecreate = `Ngày ${posts[i].datecreate.getDate()} Tháng ${posts[i].datecreate.getMonth()+1} Năm ${posts[i].datecreate.getFullYear()}`;
+                        }
+                        post = posts.slice(start, end);
+                        size = Math.ceil(posts.length/perPage);
+                        connection.query(queries.listcategory, (err, results) => {
+                            if(err){
+                                console.log(err);
+                            }else{
+                                if(req.signedCookies.userID){
+                                    connection.query(queries.getUserByID(req.signedCookies.userID), (err, user) => {
+                                        if(err){
+                                            console.log(err);
+                                        }else{
+                                            res.render('blog', {size:size, currentPage: page,category : results ,typeproduct : typeproduct  , size : size, currentPage:page, name : user[0].name, post : post,username : user[0].username, userID : req.signedCookies.userID ,title: 'Apus Tarot Shop - Hệ thống quản trị'})
+                                        }
+                                    })
+                                }else{
+                                    res.render('blog', {size:size, currentPage: page,category : results ,typeproduct : typeproduct, post : post, title: 'Apus Tarot Shop - Hệ thống quản trị', size : size, currentPage:page });
+                                }
+                            }
+                        });
                     }
                 });
             }
@@ -103,9 +264,18 @@ class SiteController {
                     if(err){
                         console.log(err);
                     }else{
-                        
                         categoryName = categories[0].name;
-                        res.render('product-category', {products : products, category : category, typeproduct : typeproduct, count : results.length, size : size, page:page ,title : categoryName});
+                        if(req.signedCookies.userID){
+                            connection.query(queries.getUserByID(req.signedCookies.userID), (err, user) => {
+                                if(err){
+                                    console.log(err);
+                                }else{
+                                    res.render('product-category', {products : products, category : category, typeproduct : typeproduct, count : results.length, size : size, currentPage:page ,title : categoryName, name : user[0].name, username : user[0].username, userID : req.signedCookies.userID});
+                                }
+                            })
+                        }else{
+                            res.render('product-category', {products : products, category : category, typeproduct : typeproduct, count : results.length, size : size, currentPage:page ,title : categoryName});
+                        }
                     }
                 })
             }
@@ -143,7 +313,7 @@ class SiteController {
                         if(results[0].newprice){
                             results[0].newprice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(results[0].newprice);
                         }
-                        res.render('detail',{category : category, typeproduct : typeproduct, detail : results, nameProduct : nameProduct, imagePr : imageprs});
+                        res.render('detail',{size : 1, currentPage: 1, category : category, typeproduct : typeproduct, detail : results, nameProduct : nameProduct, imagePr : imageprs});
                     }
                 });
             }
@@ -152,6 +322,11 @@ class SiteController {
 
     showProductSearch(req, res){
         var name = req.query.search;
+        var perPage = 8;
+        var page = (req.query.page) || 1;
+        var start = (page - 1)*perPage;
+        var end = page*perPage;
+        var size;
         var category;
         connection.query(queries.listcategory, (err, results)=>{
             if(err){
@@ -172,7 +347,9 @@ class SiteController {
             if(err){
                 console.log(err);
             }else{
-                res.render('product-category', {products : results, category : category, typeproduct : typeproduct, title: "Tìm kiếm sản phẩm",count : results.length});
+                results = results.slice(start,end);
+                size = Math.ceil(results.length/perPage);
+                res.render('product-category', {currentPage : page, size: size, products : results, category : category, typeproduct : typeproduct, title: "Tìm kiếm sản phẩm",count : results.length});
             }
         });
     }
@@ -191,7 +368,18 @@ class SiteController {
             if(err){
                 console.log(err);
             }else{
-                res.render('cart', {category : category, typeproduct : results, title: "Giỏ hàng"});
+                typeproduct = results;
+                if(req.signedCookies.userID){
+                    connection.query(queries.getUserByID(req.signedCookies.userID), (err, user) => {
+                        if(err){
+                            console.log(err);
+                        }else{
+                            res.render('cart', {category : category, typeproduct : typeproduct, title: "Giỏ hàng", size : 1, currentPage:1 , name : user[0].name, username : user[0].username, userID : req.signedCookies.userID});
+                        }
+                    })
+                }else{
+                    res.render('cart', {category : category, typeproduct : typeproduct, title: "Giỏ hàng", size : 1, currentPage:1});
+                }
             }
         });
     }
@@ -206,11 +394,24 @@ class SiteController {
             }
         });
         var typeproduct;
+        var sum = 0;
         connection.query(queries.listtype, (err, results)=>{
             if(err){
                 console.log(err);
             }else{
-                res.render('payment', {category : category, typeproduct : results, title: "Thanh toán"});
+                typeproduct=results;
+                if(req.signedCookies.userID){
+                    connection.query(queries.getUserByID(req.signedCookies.userID), (err, user) => {
+                        if(err){
+                            console.log(err);
+                        }else{
+                            sum = 1;
+                            res.render('payment', {user:user, sum : sum, category : category, typeproduct : typeproduct, title: "Thanh toán", size : 1, currentPage:1 , name : user[0].name, username : user[0].username, userID : req.signedCookies.userID});
+                        }
+                    })
+                }else{
+                    res.render('payment', {sum : sum, category : category, typeproduct : typeproduct, title: "Thanh toán", size : 1, currentPage:1});
+                }
             }
         });
     }
@@ -271,7 +472,7 @@ class SiteController {
     }
 
     showSuccess(req, res){
-        var category;
+        var category, typeproduct;
         connection.query(queries.listcategory, (err, results)=>{
             if(err){
                 console.log(err);
@@ -284,7 +485,18 @@ class SiteController {
             if(err){
                 console.log(err);
             }else{
-                res.render('success', {category : category, typeproduct : results, title: "Thành Công Mua Hàng"})
+                typeproduct= results;
+                if(req.signedCookies.userID){
+                    connection.query(queries.getUserByID(req.signedCookies.userID), (err, user) => {
+                        if(err){
+                            console.log(err);
+                        }else{
+                            res.render('success', {category : category, typeproduct : typeproduct, title: "Thành Công Mua Hàng", size : 1, currentPage:1 , name : user[0].name, username : user[0].username, userID : req.signedCookies.userID});
+                        }
+                    })
+                }else{
+                    res.render('success', {category : category, typeproduct : typeproduct, title: "Thành Công Mua Hàng"});
+                }
             }
         });
     }

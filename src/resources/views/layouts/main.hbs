@@ -38,6 +38,31 @@
                                         </a>
                                     </li>
                                 {{/each}}`;
+        var pagination = document.getElementById('pagination');
+        var url = location.pathname;
+        var myPage="";
+        if({{size}}>1){
+            var previous = {{currentPage}} - 1;
+            var next = {{currentPage}} + 1;
+            if({{currentPage}}!==1){
+                myPage = "<li class='pagination-item'>"+
+                        "<a href='"+url+"?page="+previous+"' class='pagination-item__link'><i class='fas fa-arrow-left'></i></a></li>"
+            }
+            for(var i = 1; i <= {{size}}; i++){
+                if(i == {{currentPage}}){
+                    myPage += "<li class='pagination-item pagination-item--active'>"+
+                                "<a href='"+url+"?page="+i+"' class='pagination-item__link pagination-item__link--active'>"+i+"</a></li>"
+                }else{
+                    myPage += "<li class='pagination-item'>"+
+                                "<a href='"+url+"?page="+i+"' class='pagination-item__link'>"+i+"</a></li>"
+                }
+            }
+            if({{currentPage}}!=={{size}}){
+                myPage += "<li class='pagination-item'>"+
+                        "<a href='/admin/product/list?page="+next+"' class='pagination-item__link'><i class='fas fa-arrow-right'></i></a></li>"
+            }
+        };
+        pagination.innerHTML = myPage;
     </script>
 </body>
 </html>

@@ -45,6 +45,15 @@ $('input.input-qty').each(function() {
     })
 });
 
+//Post
+if(location.pathname == '/blog' || location.pathname == '/blog/search'){
+    var contents = document.querySelectorAll('.post__item-content');
+    var contentsHidden = document.querySelectorAll('.post__item-content--hidden');
+    for(var i = 0; i < contents.length; i++){
+        contents[i].innerHTML = contentsHidden[i].innerText;
+    }
+}
+
 //Add Product Cart
 var formatMoney = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' });
 var btnCarts = document.querySelectorAll('.addCart');
@@ -87,7 +96,6 @@ btnCarts.forEach(function(btnCart, index){
         deleteCart();
     });
 });
-
 
 function addCart(productName, productImg, productPrice, productID){
     var cartList = document.querySelector('.header-cart__list-item');

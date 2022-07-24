@@ -1,7 +1,7 @@
 const crud = {
     listcategory : `SELECT * FROM CATEGORY`,
     listtype : `SELECT * FROM TYPEPRODUCT`,
-    listproduct : `SELECT * FROM PRODUCT`,
+    listproduct : `SELECT * FROM PRODUCT WHERE STATUS = 0`,
     listproductDate : `SELECT * FROM apustarot.product where month(datecreate)-5>0 ORDER BY datecreate DESC LIMIT 8;`,
     listrole : `SELECT * FROM ROLE`,
     listuser : `SELECT * FROM USER WHERE USER.role_id = 5`,
@@ -11,7 +11,7 @@ const crud = {
     listamountorder : `SELECT * FROM apustarot.detailorder inner join apustarot.order on apustarot.detailorder.order_id = apustarot.order.id where apustarot.order.status = 0;`,
     listuserwithrole : `SELECT apustarot.user.id, apustarot.user.image ,apustarot.user.name, apustarot.user.phone ,apustarot.role.name as role from apustarot.user 
                         inner join apustarot.role on apustarot.user.role_id = apustarot.role.id where apustarot.user.role_id != 5;`,
-    listpost : `SELECT apustarot.post.id, title, content, apustarot.post.link, apustarot.post.datecreate, apustarot.post.status, apustarot.user.name as username, apustarot.category.name as categoryname from apustarot.post, apustarot.user, apustarot.category where apustarot.post.creater = apustarot.user.id and apustarot.post.category_id = apustarot.category.id;`,
+    listpost : `SELECT apustarot.post.id, title, content, apustarot.post.link, apustarot.post.datecreate, apustarot.post.status, apustarot.user.name as username, apustarot.user.image as imageuser, apustarot.post.avatar ,apustarot.category.name as categoryname from apustarot.post, apustarot.user, apustarot.category where apustarot.post.creater = apustarot.user.id and apustarot.post.category_id = apustarot.category.id;`,
 
     addCategory : (data) =>{
         return `INSERT INTO CATEGORY (id, name, link, child) VALUES (NULL, '${data.name}', '${data.link}', '${data.child}');`
@@ -95,6 +95,15 @@ const crud = {
     getRoleByID : (id) =>{
         return `SELECT * FROM APUSTAROT.ROLE WHERE APUSTAROT.ROLE.id = '${id}';`
     },
+    getPostByID : (id) =>{
+        return `SELECT apustarot.post.id, title, content, apustarot.post.link, apustarot.post.datecreate, apustarot.post.status, apustarot.post.creater, apustarot.user.name as username, apustarot.user.image as imageuser, apustarot.post.avatar ,apustarot.category.name as categoryname from apustarot.post, apustarot.user, apustarot.category where apustarot.post.creater = apustarot.user.id and apustarot.post.category_id = apustarot.category.id and apustarot.post.id = '${id}';`
+    },
+    getPostByUserID : (id) =>{
+        return `SELECT apustarot.post.id, title, content, apustarot.post.link, apustarot.post.datecreate, apustarot.post.status, apustarot.post.creater, apustarot.user.name as username, apustarot.user.image as imageuser, apustarot.post.avatar ,apustarot.category.name as categoryname from apustarot.post, apustarot.user, apustarot.category where apustarot.post.creater = apustarot.user.id and apustarot.post.category_id = apustarot.category.id and apustarot.post.creater = '${id}';`
+    },
+    getPostByName : (name) =>{
+        return `SELECT apustarot.post.id, title, content, apustarot.post.link, apustarot.post.datecreate, apustarot.post.status, apustarot.post.creater, apustarot.user.name as username, apustarot.user.image as imageuser, apustarot.post.avatar ,apustarot.category.name as categoryname from apustarot.post, apustarot.user, apustarot.category where apustarot.post.creater = apustarot.user.id and apustarot.post.category_id = apustarot.category.id and post.title LIKE '%${name}%';`
+    },
 
     updateCategory : (data) =>{
         return `UPDATE CATEGORY SET
@@ -136,7 +145,7 @@ const crud = {
         return `DELETE FROM TYPEPRODUCT WHERE id = ${id};`
     },
     deleteProduct : (id) => {
-        return `DELETE FROM PRODUCT WHERE id = ${id};`
+        return `UPDATE PRODUCT SET STATUS = 1 WHERE product.id = ${id};`
     },
     deleteSlider : (id) => {
         return `DELETE FROM SLIDER WHERE id = ${id};`

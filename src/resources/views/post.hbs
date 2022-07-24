@@ -1,0 +1,147 @@
+<main class="main">
+    <div class="navsub-header">
+        <div class="navsub-header__wrapper">
+            <div class="navsub-header__box">
+                <div class="grid wide">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <ul class="navsub-header__list">
+                                <li class="navsub-header__item">
+                                    <a href="" class="navsub-header__link">HOME</a>
+                                </li>
+                                <li class="navsub-header__item">
+                                    <a href="" class="navsub-header__link">BLOG</a>
+                                </li>
+                                {{#each post}}
+                                <li class="navsub-header__item">
+                                    <span class="navsub-header__content">{{this.title}}</span>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid wide">
+        <div class="row">
+            {{#each post}}
+            <div class="col-md-9 col-sm-8">
+                <div class="post-detail__wrap">
+                    <h1 class="post-detail__title">
+                        {{this.title}}
+                    </h1>
+                    <div class="post-detail__content-wrap">
+                        <div class="post-detail__content-header">
+                            <div class="post-detail__content-header--detail">
+                                <span class="post-detail__content-header-author">
+                                    BY
+                                </span>
+                                <span class="fn">
+                                    <a href="" class="post-detail__content-header-link">
+                                        {{this.username}}
+                                    </a>
+                                </span>
+                                <span class="post-detail__sep">/</span>
+                                <span class="post-detail__content-header-date">
+                                    <span class="post-detail__content-header-date-icon glyphicon glyphicon-calendar">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </span>
+                                    <span class="post-detail__content-date">{{this.datecreate}}</span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="post__item-content--hidden">
+                            {{this.content}}
+                        </div>
+                        <div class="post-detail__content-body"></div>
+                    </div>
+                    <div class="post-detail__author">
+                        <div class="post-detail__author-avatar">
+                            <img src="/image/Customer/{{this.imageuser}}" alt="" class="post-detail__author-img">
+                        </div>
+                        <div class="post-detail__author-detail">
+                            <h4 class="post-detail__author-title">
+                                NGƯỜI VIẾT :
+                                <span class="post-detail__author-name">{{this.username}}</span>
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+            <div class="col-sm-4 col-md-3">
+                <div class="side-bar">
+                    <div class="product-search">
+                        <h3 class="side__heading">TÌM KIẾM</h3>
+                        <div class="product-search__tool">
+                            <form action="/post/search" method="get" class="product-search__form">
+                                <input type="text" name="get" class="product-search__input" placeholder="Tìm Kiếm Bài Viết...">
+                                <button id="searchPost" type="submit" value="Search" class="product-search__btn">
+                                    <i class="fas fa-search product-search__icon"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="post__same-author-wrap">
+                        <h3 class="post__same-author-title">
+                            BÀI VIẾT CÙNG TÁC GIẢ
+                        </h3>
+                        <ul class="post__same-author-list">
+                            {{#each samepost}}
+                            <li class="post__same-author-item row">
+                                {{#if this.avatar}}
+                                <div class="col-md-4 col-sm-4">
+                                    <a href="/post/{{this.id}}" class="post__same-author-image-link">
+                                        <img src="/image/Post/{{this.avatar}}" alt="" class="post__same-author-image-img">
+                                    </a>
+                                </div>
+                                <div class="col-md-8 col-sm-8">
+                                    <h4 class="post__same-author-post-title">
+                                        <a href="/post/{{this.id}}" class="post__same-author-post-link">
+                                            {{this.title}}	
+                                        </a>
+                                        <div class="post__item-content--hidden-same">
+                                            {{this.content}}
+                                        </div>
+                                        <div class="post__same-author-post-summary"></div>
+                                    </h4>
+                                </div>
+                                {{else}}
+                                <div class="col-md-4 col-sm-4">
+                                    <a href="/post/{{this.id}}" class="post__same-author-image-link">
+                                        <img src="/image/Post/bo-bai-tarot-dep-nhat.jpg" alt="" class="post__same-author-image-img">
+                                    </a>
+                                </div>
+                                <div class="col-md-8 col-sm-8">
+                                    <h4 class="post__same-author-post-title">
+                                        <a href="/post/{{this.id}}" class="post__same-author-post-link">
+                                            {{this.title}}	
+                                        </a>
+                                        <div class="post__item-content--hidden-same">
+                                            {{this.content}}
+                                        </div>
+                                        <div class="post__same-author-post-summary"></div>
+                                    </h4>
+                                </div>
+                                {{/if}}
+                            </li>
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    var contentsHidden = document.querySelector('.post__item-content--hidden');
+    var content = document.querySelector('.post-detail__content-body');
+    content.innerHTML = contentsHidden.innerText;
+    var same = document.querySelectorAll('.post__same-author-post-summary');
+    var sameHidden = document.querySelectorAll('.post__item-content--hidden-same');
+    for(var i = 0; i < same.length; i++){
+        same[i].innerHTML = sameHidden[i].innerText;
+    }
+</script>

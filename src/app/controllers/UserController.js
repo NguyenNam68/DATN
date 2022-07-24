@@ -72,7 +72,12 @@ class UserController{
                                 if(err){
                                     console.log(err);
                                 }else{
-                                    res.redirect('/');
+                                    connection.query(queries.getUserByUserName(data.username), (err, users) => {
+                                        res.cookie('userID', users[0].id, {
+                                            signed: true
+                                        });
+                                        res.redirect('/');
+                                    });
                                 }
                             })
                         }

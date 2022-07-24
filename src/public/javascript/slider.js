@@ -87,7 +87,9 @@ if(link === "/"){
             slidesToScroll : 1,
             prevArrow: '.main-product__left',
             nextArrow: '.main-product__right',
-            centerPadding :50
+            centerPadding :50,
+            autoplay : true,
+            autoplaySpeed : 3000
         });
     });
 
